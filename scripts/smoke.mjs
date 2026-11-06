@@ -3,6 +3,7 @@ import { createServer } from "node:http";
 import { readFileSync, existsSync } from "node:fs";
 import { extname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { countConfettiPixels, countDiffPixels } from "./libPng.mjs";
 
 const distDir = join(fileURLToPath(new URL("..", import.meta.url)), "dist");
 const outDir = join(
@@ -101,14 +102,21 @@ try {
   const shotIdle = await heroCanvas.screenshot();
   await page.screenshot({ path: join(outDir, "02-unboxing-idle.png") });
 
-  // auto-start ~0.7s setelah scene siap → opening + confetti meledak
-  await page.waitForTimeout(1400);
-  const shotMid = await heroCanvas.screenshot();
-  const midDelta = Math.abs(shotMid.length - shotIdle.length);
+  // auto-start ~0.7s setelah scene siap → opening + confetti meledak.
+  // Polling (bukan satu shot) agar tahan terhadap sceneReady yang lambat.
+  let shotMid = null;
+  let confettiPx = 0;
+  for (let attempt = 0; attempt < 10; attempt++) {
+    await page.waitForTimeout(300);
+    shotMid = await heroCanvas.screenshot();
+    confettiPx = countConfettiPixels(shotMid) - countConfettiPixels(shotIdle);
+    if (confettiPx > 800) break;
+  }
+  const diffPx = countDiffPixels(shotIdle, shotMid);
   check(
     "unboxing berjalan otomatis (opening + confetti)",
-    !shotIdle.equals(shotMid) && midDelta > 1200,
-    `delta=${midDelta}`,
+    diffPx > 5000 && confettiPx > 800,
+    `piksel berubah=${diffPx}, piksel confetti=+${confettiPx}`,
   );
   await page.screenshot({ path: join(outDir, "03-unboxing-confetti.png") });
 
