@@ -99,7 +99,9 @@ const dict = {
     title: "Dipercaya oleh brand, UMKM, dan **institusi**.",
     subtitle:
       "Dari UMKM lokal Jogja hingga pelanggan di luar pulau - mereka yang kembali memesan karena kerapian dan detail karya kami.",
-    all: "Lihat Semua Mitra",
+    prev: "Mitra sebelumnya",
+    next: "Mitra berikutnya",
+    goTo: "Ke mitra",
     ctaHeadline: "Pelanggan langganan kami rutin repeat order setiap musim produksi.",
     ctaSub: "Konsistensi kualitas membuat brand kembali lagi - dari Jogja sampai Kalimantan.",
     joinTitle: "Brand-mu berikutnya di sini?",
@@ -354,10 +356,6 @@ const dict = {
   wa: {
     default: "Halo Lapak Karya, saya dari website dan ingin konsultasi kemasan custom.",
     kontak: "Halo Lapak Karya, saya dari website dan ingin konsultasi kemasan custom.",
-  },
-  mitraPage: {
-    title: "Seluruh Mitra Lapak Karya",
-    back: "Kembali ke Beranda",
   },
   unboxing: {
     showcaseAlt: "Showcase kemasan premium Lapak Karya",

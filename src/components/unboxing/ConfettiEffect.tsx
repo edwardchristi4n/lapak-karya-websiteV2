@@ -135,6 +135,17 @@ function resetParticle(p: Particle, origin: [number, number, number]) {
 
 const dummy = new THREE.Object3D();
 const tmpColor = new THREE.Color();
+/** matriks untuk menyembunyikan instance (skala 0, jauh di bawah lantai) */
+const HIDDEN = new THREE.Matrix4().compose(
+  new THREE.Vector3(0, -100, 0),
+  new THREE.Quaternion(),
+  new THREE.Vector3(0, 0, 0),
+);
+
+function hideAll(mesh: THREE.InstancedMesh, count: number) {
+  for (let i = 0; i < count; i++) mesh.setMatrixAt(i, HIDDEN);
+  mesh.instanceMatrix.needsUpdate = true;
+}
 
 /**
  * Confetti dari dalam box: satu InstancedMesh (bukan ratusan komponen).
@@ -167,11 +178,7 @@ export function ConfettiEffect({
       mesh.setColorAt(i, tmpColor);
     }
     if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
-    dummy.position.set(0, -100, 0);
-    dummy.scale.setScalar(0);
-    dummy.updateMatrix();
-    for (let i = 0; i < particles.length; i++) mesh.setMatrixAt(i, dummy.matrix);
-    mesh.instanceMatrix.needsUpdate = true;
+    hideAll(mesh, particles.length);
   }, [particles]);
 
   useFrame((_, rawDt) => {
@@ -192,11 +199,7 @@ export function ConfettiEffect({
     elapsedRef.current += dt;
     const t = elapsedRef.current;
     if (t > HARD_END_S) {
-      dummy.position.set(0, -100, 0);
-      dummy.scale.setScalar(0);
-      dummy.updateMatrix();
-      for (let i = 0; i < particles.length; i++) mesh.setMatrixAt(i, dummy.matrix);
-      mesh.instanceMatrix.needsUpdate = true;
+      hideAll(mesh, particles.length);
       finished.current = true;
       return;
     }
@@ -206,19 +209,9 @@ export function ConfettiEffect({
 
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
-      if (p.done) {
-        dummy.position.set(0, -100, 0);
-        dummy.scale.setScalar(0);
-        dummy.updateMatrix();
-        mesh.setMatrixAt(i, dummy.matrix);
-        continue;
-      }
-      allDone = false;
-      if (t <= p.delay) {
-        dummy.position.set(0, -100, 0);
-        dummy.scale.setScalar(0);
-        dummy.updateMatrix();
-        mesh.setMatrixAt(i, dummy.matrix);
+      if (!p.done) allDone = false;
+      if (p.done || t <= p.delay) {
+        mesh.setMatrixAt(i, HIDDEN);
         continue;
       }
 

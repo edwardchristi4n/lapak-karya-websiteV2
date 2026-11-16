@@ -53,25 +53,15 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const t = DICTS[locale];
     document.documentElement.lang = locale;
-    // halaman non-beranda (mis. /mitra.html) mengelola meta-nya sendiri;
-    // meta home tidak boleh menimpa milik halaman tersebut.
-    const page = window.location.pathname.split("/").pop();
-    if (page && page !== "index.html" && page !== "") {
-      return;
-    }
     document.title = t.meta.title;
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute("content", t.meta.description);
-    const ogLocale = document.querySelector('meta[property="og:locale"]');
-    if (ogLocale) ogLocale.setAttribute("content", t.meta.ogLocale);
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute("content", t.meta.title);
-    const ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute("content", t.meta.description);
-    const twTitle = document.querySelector('meta[name="twitter:title"]');
-    if (twTitle) twTitle.setAttribute("content", t.meta.title);
-    const twDesc = document.querySelector('meta[name="twitter:description"]');
-    if (twDesc) twDesc.setAttribute("content", t.meta.description);
+    const setMeta = (selector: string, content: string) =>
+      document.querySelector(selector)?.setAttribute("content", content);
+    setMeta('meta[name="description"]', t.meta.description);
+    setMeta('meta[property="og:locale"]', t.meta.ogLocale);
+    setMeta('meta[property="og:title"]', t.meta.title);
+    setMeta('meta[property="og:description"]', t.meta.description);
+    setMeta('meta[name="twitter:title"]', t.meta.title);
+    setMeta('meta[name="twitter:description"]', t.meta.description);
   }, [locale]);
 
   return (

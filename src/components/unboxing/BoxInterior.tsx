@@ -2,6 +2,18 @@ import { useEffect, useMemo } from "react";
 import * as THREE from "three";
 import { BOX, MATERIALS } from "./unboxingConfig";
 
+/** material liner cream; `transparent` agar ikut memudar saat revealing */
+function InteriorMaterial() {
+  return (
+    <meshStandardMaterial
+      color={MATERIALS.interior.color}
+      roughness={MATERIALS.interior.roughness}
+      metalness={MATERIALS.interior.metalness}
+      transparent
+    />
+  );
+}
+
 /**
  * Kompartemen dalam: lapisan cream (liners) sedikit lebih kecil dari
  * cangkang navy, plus alas padding — terlihat saat lid terbuka.
@@ -37,11 +49,7 @@ export function BoxInterior() {
       {/* lantai dalam */}
       <mesh position={[0, floorY, 0]}>
         <boxGeometry args={[innerW, 0.03, innerD]} />
-        <meshStandardMaterial
-          color={MATERIALS.interior.color}
-          roughness={MATERIALS.interior.roughness}
-          transparent
-        />
+        <InteriorMaterial />
       </mesh>
       {/* padding alas — sedikit lebih rendah dari bibir box */}
       <mesh position={[0, floorY + 0.06, 0]}>
@@ -58,41 +66,25 @@ export function BoxInterior() {
         position={[0, BOX.baseT + (BOX.h - BOX.baseT) / 2, innerD / 2]}
         geometry={sideGeo}
       >
-        <meshStandardMaterial
-          color={MATERIALS.interior.color}
-          roughness={MATERIALS.interior.roughness}
-          transparent
-        />
+        <InteriorMaterial />
       </mesh>
       <mesh
         position={[0, BOX.baseT + (BOX.h - BOX.baseT) / 2, -innerD / 2]}
         geometry={sideGeo}
       >
-        <meshStandardMaterial
-          color={MATERIALS.interior.color}
-          roughness={MATERIALS.interior.roughness}
-          transparent
-        />
+        <InteriorMaterial />
       </mesh>
       <mesh
         position={[innerW / 2, BOX.baseT + (BOX.h - BOX.baseT) / 2, 0]}
         geometry={frontGeo}
       >
-        <meshStandardMaterial
-          color={MATERIALS.interior.color}
-          roughness={MATERIALS.interior.roughness}
-          transparent
-        />
+        <InteriorMaterial />
       </mesh>
       <mesh
         position={[-innerW / 2, BOX.baseT + (BOX.h - BOX.baseT) / 2, 0]}
         geometry={frontGeo}
       >
-        <meshStandardMaterial
-          color={MATERIALS.interior.color}
-          roughness={MATERIALS.interior.roughness}
-          transparent
-        />
+        <InteriorMaterial />
       </mesh>
     </group>
   );

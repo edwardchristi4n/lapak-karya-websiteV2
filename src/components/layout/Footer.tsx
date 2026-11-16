@@ -134,9 +134,11 @@ export function Footer() {
                   </span>
                   <a
                     href={waLink(t.wa.default)}
+                    target="_blank"
+                    rel="noopener"
                     className="transition hover:text-ink"
                   >
-                    +62 8xx-xxxx-xxxx
+                    {SITE.waDisplay}
                   </a>
                 </li>
                 <li className="flex items-start gap-3">

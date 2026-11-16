@@ -75,13 +75,13 @@ export function Proses() {
             visible ? "is-visible" : ""
           }`}
         >
-          <div
-            className="steps-line rainbow-bar absolute top-7 right-0 left-0 hidden h-1 rounded-full opacity-60 md:block"
-            aria-hidden="true"
-          />
           {t.proses.steps.map((_, i) => (
             <StepItem key={i} index={i} />
           ))}
+          <li
+            className="steps-line rainbow-bar absolute top-7 right-0 left-0 hidden h-1 rounded-full opacity-60 md:block"
+            aria-hidden="true"
+          />
         </ol>
       </div>
     </section>

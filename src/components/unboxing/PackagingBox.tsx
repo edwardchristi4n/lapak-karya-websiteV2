@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, type RefObject } from "react";
 import { RoundedBox } from "@react-three/drei";
 import type { ThreeEvent } from "@react-three/fiber";
 import * as THREE from "three";
@@ -19,9 +19,9 @@ export function PackagingBox({
   onPointerOut,
 }: {
   /** ref group utama — target float/lift/fade timeline */
-  boxRef: React.RefObject<THREE.Group | null>;
+  boxRef: RefObject<THREE.Group | null>;
   /** diteruskan ke BoxLid (rotasi engsel) */
-  lidRef: React.RefObject<THREE.Group | null>;
+  lidRef: RefObject<THREE.Group | null>;
   onPointerOver?: () => void;
   onPointerOut?: () => void;
 }) {

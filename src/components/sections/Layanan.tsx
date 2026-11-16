@@ -1,14 +1,13 @@
-import { SERVICES } from "../../data/services";
+import { SERVICES, type Service } from "../../data/services";
 import { useI18n } from "../../i18n";
 import { useReveal } from "../../hooks/useReveal";
 import { Reveal } from "../Reveal";
 
-function ServiceCard({ id }: { id: string }) {
+function ServiceCard({ service }: { service: Service }) {
   const { t } = useI18n();
   const { ref, visible } = useReveal<HTMLElement>();
-  const service = SERVICES.find((s) => s.id === id);
-  const text = t.layanan.services[id];
-  if (!service || !text) return null;
+  const text = t.layanan.services[service.id];
+  if (!text) return null;
   return (
     <article
       ref={ref}
@@ -64,7 +63,7 @@ export function Layanan() {
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service) => (
-            <ServiceCard key={service.id} id={service.id} />
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </div>

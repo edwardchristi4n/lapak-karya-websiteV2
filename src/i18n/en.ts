@@ -96,7 +96,9 @@ const dict: Dict = {
     title: "Trusted by brands, SMEs, and **institutions**.",
     subtitle:
       "From local Jogja SMEs to customers on other islands - they keep coming back for the neatness and detail of our work.",
-    all: "View All Partners",
+    prev: "Previous partner",
+    next: "Next partner",
+    goTo: "Go to partner",
     ctaHeadline: "Our regular customers reorder every production season.",
     ctaSub: "Consistent quality brings brands back - from Jogja to Kalimantan.",
     joinTitle: "Your brand here next?",
@@ -353,10 +355,6 @@ const dict: Dict = {
       "Hello Lapak Karya, I'm from your website and would like to consult about custom packaging.",
     kontak:
       "Hello Lapak Karya, I'm from your website and would like to consult about custom packaging.",
-  },
-  mitraPage: {
-    title: "All Lapak Karya Partners",
-    back: "Back to Home",
   },
   unboxing: {
     showcaseAlt: "Lapak Karya premium packaging showcase",

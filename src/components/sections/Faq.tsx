@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { RichText, useI18n } from "../../i18n";
 import { useReveal } from "../../hooks/useReveal";
 import { Reveal } from "../Reveal";
@@ -16,7 +16,7 @@ function FaqItem({
   onToggle: () => void;
 }) {
   const { ref, visible } = useReveal<HTMLDivElement>();
-  const panelId = `faq-panel-${q.replace(/\W+/g, "-").toLowerCase()}`;
+  const panelId = useId();
 
   return (
     <div
@@ -71,7 +71,7 @@ export function Faq() {
         <div className="space-y-3 lg:col-span-8">
           {t.faq.items.map((faq, i) => (
             <FaqItem
-              key={faq.q}
+              key={i}
               q={faq.q}
               a={faq.a}
               open={openIndex === i}
