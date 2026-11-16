@@ -1,36 +1,18 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import { RichText, useI18n } from "../../i18n";
-import type { Partner } from "../../data/partners";
+import { PARTNERS, type Partner } from "../../data/partners";
+import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import { Reveal } from "../Reveal";
-import { ArrowRightIcon } from "../icons";
-import {
-  TiltedGridHero,
-  type TiltedGridImage,
-} from "../ui/tilted-grid-hero";
+import { ArrowLeftIcon, ArrowRightIcon } from "../icons";
 
-/** Galeri berjalan memakai foto Rumah UMKM (Rumah Kreatif BUMN). */
-const MITRA_WORKS: TiltedGridImage[] = [
-  { src: "/img/mitra-rumah-kreatif.jpg", alt: "Kemasan Rumah Kreatif BUMN" },
-];
+const AUTOPLAY_MS = 4000;
 
-export function PartnerCard({
-  partner,
-  variant = "carousel",
-}: {
-  partner: Partner;
-  /** carousel = lebar snap track; grid = lebar penuh (halaman mitra) */
-  variant?: "carousel" | "grid";
-}) {
+function PartnerCard({ partner }: { partner: Partner }) {
   const { t } = useI18n();
   const text = t.mitra.partners[partner.id];
   if (!text) return null;
-  const width =
-    variant === "carousel"
-      ? "w-[82%] shrink-0 snap-start sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
-      : "w-full";
   return (
-    <article
-      className={`partner-card group relative flex flex-col overflow-hidden rounded-4xl border border-ink/10 bg-white transition hover:-translate-y-1 hover:shadow-lift ${width}`}
-    >
+    <article className="partner-card group relative flex w-[82%] shrink-0 snap-start flex-col overflow-hidden rounded-4xl border border-ink/10 bg-white transition hover:-translate-y-1 hover:shadow-lift sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]">
       <div className={`h-1.5 w-full ${partner.accent}`} />
       <div className="relative m-3 aspect-[16/9] overflow-hidden rounded-3xl bg-cream">
         <img
@@ -67,6 +49,140 @@ export function PartnerCard({
   );
 }
 
+/** Ukuran geser carousel: jarak antar kartu & jumlah "halaman" yang bisa dituju. */
+function trackMetrics(track: HTMLElement) {
+  const cards = track.querySelectorAll<HTMLElement>(".partner-card");
+  const step =
+    cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft || 1 : 1;
+  const maxScroll = track.scrollWidth - track.clientWidth;
+  return {
+    step,
+    pages: Math.max(1, Math.round(maxScroll / step) + 1),
+    current: Math.round(track.scrollLeft / step),
+  };
+}
+
+/** Carousel mitra: geser otomatis, berhenti saat di-hover/disentuh/fokus. */
+function PartnerCarousel() {
+  const { t } = useI18n();
+  const reduceMotion = usePrefersReducedMotion();
+  const trackRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
+  const [pages, setPages] = useState(1);
+  const [current, setCurrent] = useState(0);
+
+  /** Geser ke halaman i (berputar: setelah terakhir kembali ke awal). */
+  const go = useCallback((i: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const { step, pages: n } = trackMetrics(track);
+    track.scrollTo({ left: (((i % n) + n) % n) * step, behavior: "smooth" });
+  }, []);
+
+  /** Geser relatif dari posisi sekarang (+1 maju, -1 mundur). */
+  const shift = useCallback(
+    (delta: number) => {
+      const track = trackRef.current;
+      if (track) go(trackMetrics(track).current + delta);
+    },
+    [go],
+  );
+
+  // sinkronkan titik indikator dengan posisi scroll & ukuran layar
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const sync = () => {
+      const m = trackMetrics(track);
+      setPages(m.pages);
+      setCurrent(m.current);
+    };
+    let timeout: ReturnType<typeof setTimeout>;
+    const onScroll = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(sync, 120);
+    };
+    sync();
+    track.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", sync);
+    return () => {
+      clearTimeout(timeout);
+      track.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", sync);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    const timer = setInterval(() => {
+      if (!pausedRef.current) shift(1);
+    }, AUTOPLAY_MS);
+    return () => clearInterval(timer);
+  }, [reduceMotion, shift]);
+
+  const pause = () => {
+    pausedRef.current = true;
+  };
+  const resume = () => {
+    pausedRef.current = false;
+  };
+
+  return (
+    <div
+      onMouseEnter={pause}
+      onMouseLeave={resume}
+      onTouchStart={pause}
+      onTouchEnd={resume}
+      onFocus={pause}
+      onBlur={resume}
+    >
+      <div
+        ref={trackRef}
+        className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto scroll-smooth px-5 pb-4 [scrollbar-width:none] lg:mx-0 lg:scroll-px-0 lg:px-0 [&::-webkit-scrollbar]:hidden"
+      >
+        {PARTNERS.map((partner) => (
+          <PartnerCard key={partner.id} partner={partner} />
+        ))}
+      </div>
+
+      <div className="mt-6 flex items-center justify-between">
+        <div className="flex gap-2">
+          {Array.from({ length: pages }, (_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`${t.mitra.goTo} ${i + 1}`}
+              aria-current={i === current ? "true" : undefined}
+              onClick={() => go(i)}
+              className={`h-2.5 rounded-full transition-all ${
+                i === current ? "w-8 bg-ink" : "w-2.5 bg-ink/20 hover:bg-ink/40"
+              }`}
+            />
+          ))}
+        </div>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={() => shift(-1)}
+            aria-label={t.mitra.prev}
+            className="grid h-11 w-11 place-items-center rounded-full border border-ink/15 bg-white transition hover:border-ink"
+          >
+            <ArrowLeftIcon className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => shift(1)}
+            aria-label={t.mitra.next}
+            className="grid h-11 w-11 place-items-center rounded-full bg-ink text-white transition hover:bg-lk-indigo"
+          >
+            <ArrowRightIcon className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Mitra() {
   const { t } = useI18n();
 
@@ -91,21 +207,8 @@ export function Mitra() {
           </p>
         </Reveal>
 
-        <Reveal className="mt-12">
-          <TiltedGridHero
-            images={MITRA_WORKS}
-            speed={5}
-            tileHeight={60}
-            axis={50}
-            className="h-[240px] sm:h-[300px]"
-          />
-        </Reveal>
-
-        <Reveal className="mt-8 flex justify-center">
-          <a href="/mitra.html" className="btn-ghost group">
-            {t.mitra.all}
-            <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
-          </a>
+        <Reveal className="mt-14">
+          <PartnerCarousel />
         </Reveal>
 
         <Reveal className="mt-6">

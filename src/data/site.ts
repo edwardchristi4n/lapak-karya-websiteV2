@@ -1,8 +1,7 @@
 export const SITE = {
-  name: "Lapak Karya",
-  tagline: "Custom Packaging Premium",
-  url: "https://lapakkarya.id",
+  // TODO: ganti dengan nomor WhatsApp asli (waNumber tanpa "+" / spasi)
   waNumber: "628xxxxxxxxxx",
+  waDisplay: "+62 8xx-xxxx-xxxx",
   instagram: "https://www.instagram.com/lapakkarya/",
   instagramHandle: "@lapakkarya",
   address:

@@ -26,6 +26,18 @@ export interface UnboxingTargets {
   canvasWrap: HTMLElement | null;
 }
 
+/** Semua material mesh di dalam group (untuk efek pudar saat revealing). */
+function collectMaterials(group: THREE.Group): THREE.Material[] {
+  const mats: THREE.Material[] = [];
+  group.traverse((obj) => {
+    const mesh = obj as THREE.Mesh;
+    if (!mesh.isMesh) return;
+    if (Array.isArray(mesh.material)) mats.push(...mesh.material);
+    else mats.push(mesh.material);
+  });
+  return mats;
+}
+
 /**
  * Satu timeline GSAP terkoordinasi untuk seluruh pengalaman unboxing
  * (objek three.js + DOM HTML sekaligus), dengan label fase:
@@ -41,19 +53,6 @@ export function useUnboxingAnimation(
   const hoverTween = useRef<gsap.core.Tween | null>(null);
   const started = useRef(false);
   const targets = useRef<UnboxingTargets | null>(null);
-
-  const collectMaterials = (group: THREE.Group): THREE.Material[] => {
-    const mats: THREE.Material[] = [];
-    group.traverse((obj) => {
-      const mesh = obj as THREE.Mesh;
-      if (mesh.isMesh && Array.isArray(mesh.material)) {
-        mats.push(...(mesh.material as THREE.Material[]));
-      } else if ((mesh as THREE.Mesh).isMesh && mesh.material) {
-        mats.push(mesh.material as THREE.Material);
-      }
-    });
-    return mats;
-  };
 
   /** bangun timeline (sekali) setelah scene & DOM siap */
   const ready = useCallback(
@@ -204,7 +203,7 @@ export function useUnboxingAnimation(
 
   /** identitas objek stabil — efek pemanggil tidak dibangun ulang tiap render */
   const api = useMemo(
-    () => ({ ready, start, startFloat, setHover, finishInstantly, hasStarted: started }),
+    () => ({ ready, start, startFloat, setHover, finishInstantly }),
     [ready, start, startFloat, setHover, finishInstantly],
   );
   return api;

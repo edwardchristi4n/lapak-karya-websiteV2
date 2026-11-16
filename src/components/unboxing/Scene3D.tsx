@@ -1,11 +1,16 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type RefObject } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import { ConfettiEffect } from "./ConfettiEffect";
 import { PackagingBox } from "./PackagingBox";
-import { BOX } from "./unboxingConfig";
+import {
+  BOX,
+  MATERIALS,
+  type SceneTier,
+  type UnboxingPhase,
+} from "./unboxingConfig";
 
 const damp = THREE.MathUtils.damp;
 
@@ -33,8 +38,8 @@ function MouseParallax({
   lookAtRef,
   enabled,
 }: {
-  groupRef: React.RefObject<THREE.Group | null>;
-  lookAtRef: React.RefObject<THREE.Vector3>;
+  groupRef: RefObject<THREE.Group | null>;
+  lookAtRef: RefObject<THREE.Vector3>;
   enabled: boolean;
 }) {
   const pointer = useRef({ x: 0, y: 0 });
@@ -68,14 +73,6 @@ function MouseParallax({
   return null;
 }
 
-export interface SceneTier {
-  mobile: boolean;
-  dprMax: number;
-  antialias: boolean;
-  shadowRes: number;
-  confettiCount: number;
-}
-
 export default function Scene3D({
   phase,
   burst,
@@ -91,14 +88,14 @@ export default function Scene3D({
   onBoxHover,
   inView,
 }: {
-  phase: string;
+  phase: UnboxingPhase;
   burst: number;
-  boxRef: React.RefObject<THREE.Group | null>;
-  lidRef: React.RefObject<THREE.Group | null>;
-  floatRef: React.RefObject<THREE.Group | null>;
-  hoverRef: React.RefObject<THREE.Group | null>;
+  boxRef: RefObject<THREE.Group | null>;
+  lidRef: RefObject<THREE.Group | null>;
+  floatRef: RefObject<THREE.Group | null>;
+  hoverRef: RefObject<THREE.Group | null>;
   /** vektor titik pandang kamera — dianimasikan timeline saat opening */
-  lookAtRef: React.RefObject<THREE.Vector3>;
+  lookAtRef: RefObject<THREE.Vector3>;
   cameraBase: [number, number, number];
   cameraFov: number;
   tier: SceneTier;
@@ -147,7 +144,7 @@ export default function Scene3D({
         blur={2.6}
         far={6}
         resolution={tier.shadowRes}
-        color="#1b1d3a"
+        color={MATERIALS.shadow}
       />
       <MouseParallax
         groupRef={floatRef}

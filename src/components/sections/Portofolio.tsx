@@ -4,10 +4,10 @@ import {
   PORTFOLIO_ITEMS,
   type PortfolioFilter,
 } from "../../data/portfolio";
+import { SITE } from "../../data/site";
 import { useI18n } from "../../i18n";
 import { Reveal } from "../Reveal";
 import { InstagramIcon } from "../icons";
-import { SITE } from "../../data/site";
 
 export function Portofolio() {
   const { t } = useI18n();
@@ -33,7 +33,7 @@ export function Portofolio() {
 
         <Reveal className="mt-10">
           <div
-            role="tablist"
+            role="group"
             aria-label={t.portofolio.filterAria}
             className="flex flex-wrap justify-center gap-2"
           >
@@ -41,8 +41,7 @@ export function Portofolio() {
               <button
                 key={f.id}
                 type="button"
-                role="tab"
-                aria-selected={filter === f.id}
+                aria-pressed={filter === f.id}
                 style={{ "--c": f.color } as CSSProperties}
                 onClick={() => setFilter(f.id)}
                 className={`filter-btn rounded-full px-5 py-2 text-sm font-semibold ${

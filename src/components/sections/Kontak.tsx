@@ -58,7 +58,7 @@ export function Kontak() {
                       rel="noopener"
                       className="mt-1 block text-sm hover:text-lk-yellow"
                     >
-                      +62 8xx-xxxx-xxxx
+                      {SITE.waDisplay}
                     </a>
                   </div>
                 </li>

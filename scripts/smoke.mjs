@@ -40,7 +40,18 @@ const server = createServer((req, res) => {
 
 await new Promise((resolve) => server.listen(4174, resolve));
 
-const browser = await chromium.launch({ channel: "msedge", headless: true });
+// pakai browser yang terpasang di mesin ini: Chrome → Edge → Chromium bawaan Playwright
+async function launchBrowser() {
+  for (const channel of ["chrome", "msedge", undefined]) {
+    try {
+      return await chromium.launch({ channel, headless: true });
+    } catch {
+      /* coba channel berikutnya */
+    }
+  }
+  throw new Error("Tidak ada browser Chromium yang bisa dijalankan");
+}
+const browser = await launchBrowser();
 const page = await browser.newPage({ viewport: { width: 1360, height: 900 } });
 
 const consoleErrors = [];
@@ -138,48 +149,31 @@ try {
     (await showcase.isVisible()),
   );
 
-  // Band TiltedGridHero di section Mitra (dekoratif, strip gambar melengkung)
+  // Carousel mitra di section Mitra (tetap di satu halaman)
   const mitra = page.locator("#mitra");
   await mitra.scrollIntoViewIfNeeded();
   await page.waitForTimeout(1200);
-  const bandWrap = mitra.locator("div[aria-hidden]");
-  const bandStrips = await bandWrap.locator("img").count();
+  const mitraCards = await mitra.locator(".partner-card").count();
   check(
-    "band melengkung mitra ter-render",
-    bandStrips >= 32,
-    `strips: ${bandStrips}`,
-  );
-  const band1 = await bandWrap.screenshot();
-  await page.waitForTimeout(1000);
-  const band2 = await bandWrap.screenshot();
-  check("band mitra beranimasi", !band1.equals(band2));
-
-  // tombol "Lihat Semua Mitra" → halaman mitra baru
-  const allMitraBtn = page.locator('#mitra a[href="/mitra.html"]');
-  check(
-    "tombol Lihat Semua Mitra ada",
-    (await allMitraBtn.count()) === 1,
-  );
-  await allMitraBtn.click();
-  await page.waitForURL("**/mitra.html", { timeout: 15000 });
-  await page.waitForSelector(".partner-card", { timeout: 15000 });
-  await page.waitForTimeout(800);
-  const mitraCards = await page.locator(".partner-card").count();
-  check(
-    "halaman mitra memuat seluruh mitra",
+    "carousel mitra memuat seluruh mitra",
     mitraCards >= 5,
     `kartu: ${mitraCards}`,
   );
   check(
-    "judul halaman mitra benar",
-    (await page.title()).includes("Mitra"),
-    `title: ${await page.title()}`,
+    "tidak ada link ke halaman mitra terpisah",
+    (await mitra.locator('a[href="/mitra.html"]').count()) === 0,
   );
-  await page.screenshot({ path: join(outDir, "10-mitra-page.png") });
-
-  // kembali ke beranda untuk sisa pengujian
-  await page.goBack();
-  await page.waitForSelector("#navbar", { timeout: 15000 });
+  const mitraTrack = mitra.locator(".partner-card").first().locator("..");
+  const scrollBefore = await mitraTrack.evaluate((el) => el.scrollLeft);
+  await mitra.getByRole("button", { name: /berikutnya|next/i }).click();
+  await page.waitForTimeout(900);
+  const scrollAfter = await mitraTrack.evaluate((el) => el.scrollLeft);
+  check(
+    "tombol next carousel mitra menggeser kartu",
+    scrollAfter > scrollBefore,
+    `${scrollBefore} -> ${scrollAfter}`,
+  );
+  await mitra.screenshot({ path: join(outDir, "10-mitra-carousel.png") });
 
   const porto = page.locator("#portofolio");
   await porto.scrollIntoViewIfNeeded();

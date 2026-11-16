@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type RefObject } from "react";
 import { RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
 import { BOX, MATERIALS } from "./unboxingConfig";
@@ -16,7 +16,7 @@ export function BoxLid({
   lidRef,
 }: {
   /** ref group engsel — target rotasi timeline GSAP */
-  lidRef: React.RefObject<THREE.Group | null>;
+  lidRef: RefObject<THREE.Group | null>;
 }) {
   const [logo, setLogo] = useState<THREE.CanvasTexture | null>(null);
 

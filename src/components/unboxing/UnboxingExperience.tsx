@@ -50,11 +50,11 @@ export function UnboxingExperience({
   const floatRef = useRef<THREE.Group>(null);
   const hoverRef = useRef<THREE.Group>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
-  /** titik pandang kamera — di-tween timeline saat box terbuka */
-  const lookAtRef = useRef(new THREE.Vector3(0, 0.8, 0));
   const [inView, setInView] = useState(true);
   const tier = useMemo(() => unboxingTier(), []);
   const camCfg = tier.mobile ? CAMERA.mobile : CAMERA.desktop;
+  /** titik pandang kamera — di-tween timeline saat box terbuka */
+  const lookAtRef = useRef(new THREE.Vector3(0, camCfg.baseLookY, 0));
 
   const handleBurst = useCallback(() => setBurst((b) => b + 1), []);
   const anim = useUnboxingAnimation(setPhase, handleBurst);

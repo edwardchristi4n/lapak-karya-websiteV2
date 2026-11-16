@@ -76,12 +76,14 @@ export const CONFETTI_COLORS = [
   "#e2362b",
 ] as const;
 
-export function detectMobile(): boolean {
+function detectMobile(): boolean {
   if (typeof window === "undefined") return false;
   return (
     window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768
   );
 }
+
+export type SceneTier = ReturnType<typeof unboxingTier>;
 
 export function unboxingTier() {
   const mobile = detectMobile();

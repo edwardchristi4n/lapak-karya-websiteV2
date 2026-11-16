@@ -21,7 +21,7 @@ export function loadBrandLogoTexture(): Promise<THREE.CanvasTexture> {
         return;
       }
       // gambar logo proporsional di tengah, warna asli dipertahankan
-      const scale = Math.min(size, size) * 0.86;
+      const scale = size * 0.86;
       const ar = img.naturalWidth / Math.max(1, img.naturalHeight);
       let w = scale;
       let h = scale;
@@ -45,7 +45,6 @@ export function plainLogoTexture(): THREE.CanvasTexture {
   canvas.width = 512;
   canvas.height = 512;
   const ctx = canvas.getContext("2d")!;
-  ctx.clearRect(0, 0, 512, 512);
   ctx.fillStyle = "#1b1d3a";
   ctx.font = `800 96px "Bricolage Grotesque Variable", sans-serif`;
   ctx.textAlign = "center";
