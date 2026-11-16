@@ -75,7 +75,6 @@ try {
   );
 
   check("footer ada", (await page.locator("footer").count()) === 1);
-  check("chat toggle ada", (await page.locator('button[aria-label="Buka chat"]').count()) === 1);
 
   const imgBroken = await page.evaluate(() =>
     Array.from(document.images)
@@ -138,18 +137,6 @@ try {
     "tidak bisa restart setelah completed",
     (await showcase.isVisible()),
   );
-
-  const chatToggle = page.locator('button[aria-label="Buka chat"]');
-  await chatToggle.click();
-  await page.waitForTimeout(800);
-  const closeCount = await page.locator('button[aria-label="Tutup chat"]').count();
-  const headerCount = await page.getByText("Asisten Lapak Karya").count();
-  check(
-    "chat panel bisa dibuka",
-    closeCount >= 1 && headerCount >= 1,
-    `tombol tutup: ${closeCount}, header panel: ${headerCount}`,
-  );
-  await page.screenshot({ path: join(outDir, "07-chat.png") });
 
   // Band TiltedGridHero di section Mitra (dekoratif, strip gambar melengkung)
   const mitra = page.locator("#mitra");

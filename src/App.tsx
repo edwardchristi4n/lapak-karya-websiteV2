@@ -1,4 +1,3 @@
-import { ChatWidget } from "./components/chat/ChatWidget";
 import { Footer } from "./components/layout/Footer";
 import { Navbar } from "./components/layout/Navbar";
 import { Faq } from "./components/sections/Faq";
@@ -32,7 +31,6 @@ export default function App() {
         <Kontak />
       </main>
       <Footer />
-      <ChatWidget />
     </>
   );
 }
