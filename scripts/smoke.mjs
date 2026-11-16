@@ -55,8 +55,15 @@ const browser = await launchBrowser();
 const page = await browser.newPage({ viewport: { width: 1360, height: 900 } });
 
 const consoleErrors = [];
+// hanya error dari halaman kita sendiri; error internal iframe pihak ketiga
+// (mis. Google Maps yang diblokir kebijakan Local Network Access Chrome saat
+// dibuka dari localhost) di luar kendali kode website
 page.on("console", (m) => {
-  if (m.type() === "error") consoleErrors.push(m.text());
+  if (m.type() !== "error") return;
+  const src = m.location()?.url ?? "";
+  if (src && !src.startsWith("http://localhost")) return;
+  if (m.text().includes("blocked by CORS policy") && m.text().includes("google")) return;
+  consoleErrors.push(m.text());
 });
 page.on("pageerror", (e) => consoleErrors.push(`PAGEERROR: ${e}`));
 
@@ -182,7 +189,7 @@ try {
   await filterButtons.nth(1).click();
   await page.waitForTimeout(600);
   const visiblePorto = await page.$$eval(".portfolio-item", (els) => els.length);
-  check("filter portofolio jalan", visiblePorto === 2, `hardbox items: ${visiblePorto}`);
+  check("filter portofolio jalan (8 foto per kategori)", visiblePorto === 8, `hardbox items: ${visiblePorto}`);
   await page.screenshot({ path: join(outDir, "04-portofolio-filter.png") });
 
   const faq = page.locator("#faq");

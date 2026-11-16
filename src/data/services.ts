@@ -5,36 +5,37 @@ export interface Service {
   badgeClass?: string;
 }
 
+/** Foto: karya asli Lapak Karya (Instagram @lapakkarya). */
 export const SERVICES: Service[] = [
   {
     id: "hardbox",
-    image: "/img/layanan-hardbox.jpg",
+    image: "/img/layanan-hardbox.webp",
     gradient: "from-lk-indigo to-lk-sky",
     badgeClass: "bg-lk-indigo/10 text-lk-indigo",
   },
   {
     id: "magnet",
-    image: "/img/layanan-magnet.jpg",
+    image: "/img/layanan-magnet.webp",
     gradient: "from-lk-red to-lk-orange",
   },
   {
     id: "paperbag",
-    image: "/img/layanan-paperbag.jpg",
+    image: "/assets/karya_wastra.jpg",
     gradient: "from-lk-yellow to-lk-green",
   },
   {
     id: "seserahan",
-    image: "/img/layanan-seserahan.jpg",
+    image: "/img/layanan-seserahan.webp",
     gradient: "from-lk-orange to-lk-yellow",
   },
   {
     id: "souvenir",
-    image: "/img/layanan-souvenir.jpg",
+    image: "/img/layanan-souvenir.webp",
     gradient: "from-lk-sky to-lk-green",
   },
   {
     id: "prototipe",
-    image: "/img/layanan-prototipe.jpg",
+    image: "/img/layanan-prototipe.webp",
     gradient: "from-lk-indigo to-lk-red",
     badgeClass: "bg-lk-green/15 text-[#4d7d17]",
   },

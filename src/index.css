@@ -111,6 +111,23 @@
   }
 }
 
+/* Lompat ke section (navbar/tombol #anchor): berhenti ±1.5rem di atas judul,
+   bukan di tepi section. Nilai = 1.5rem dikurangi padding atas section
+   (py-20 = 5rem, lg:py-28 = 7rem). Tinggi navbar sudah ditangani
+   scroll-padding-top di Navbar.tsx. #beranda ditangani goHome(). */
+section[id]:not(#beranda) {
+  scroll-margin-top: calc(1.5rem - 5rem);
+}
+@media (min-width: 1024px) {
+  section[id]:not(#beranda) {
+    scroll-margin-top: calc(1.5rem - 7rem);
+  }
+  /* Prestasi memakai lg:py-24 (6rem) */
+  section#prestasi {
+    scroll-margin-top: calc(1.5rem - 6rem);
+  }
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(24px);

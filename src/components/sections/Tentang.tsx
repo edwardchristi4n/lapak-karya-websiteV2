@@ -39,13 +39,14 @@ export function Tentang() {
           <div className="grid grid-cols-2 gap-4 lg:flex-1 lg:grid-rows-[minmax(14rem,1fr)_auto]">
             <div className="ph col-span-2 aspect-[16/10] bg-gradient-to-br from-lk-green to-lk-sky lg:aspect-auto">
               <img
-                src="/img/tentang-workshop.jpg"
+                src="/img/tentang-rumah-produksi.webp"
                 alt={t.tentang.workshopAlt}
                 className="absolute inset-0 h-full w-full object-cover"
                 loading="lazy"
               />
             </div>
             <div className="ph aspect-square bg-gradient-to-br from-lk-red to-lk-orange">
+              {/* TODO: ganti dengan foto owner Lapak Karya (foto ini sementara) */}
               <img
                 src="/img/tentang-founder.webp"
                 alt={t.tentang.founderAlt}
@@ -53,7 +54,7 @@ export function Tentang() {
                 loading="lazy"
               />
             </div>
-            <div className="relative flex aspect-square flex-col justify-between overflow-hidden rounded-3xl bg-ink p-5 shadow-card">
+            <div className="relative flex aspect-square flex-col justify-between overflow-hidden rounded-3xl bg-ink p-4 shadow-card sm:p-5">
               <img
                 src="/img/tentang-tugu.jpg"
                 alt={t.tentang.tuguAlt}
@@ -61,10 +62,10 @@ export function Tentang() {
                 loading="lazy"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent" />
-              <span className="relative grid h-11 w-11 place-items-center self-start rounded-2xl bg-white/90 p-2 shadow-card backdrop-blur">
+              <span className="relative grid h-9 w-9 place-items-center self-start rounded-xl bg-white/90 p-1.5 shadow-card backdrop-blur sm:h-11 sm:w-11 sm:rounded-2xl sm:p-2">
                 <img src="/assets/logo_mark.svg" alt="" className="h-full w-auto" />
               </span>
-              <p className="relative font-display text-lg leading-snug font-bold text-white">
+              <p className="relative font-display text-sm leading-snug font-bold text-white sm:text-lg">
                 {t.tentang.tuguCaption}
               </p>
             </div>

@@ -1,7 +1,8 @@
 import { useState, type CSSProperties } from "react";
 import {
   PORTFOLIO_FILTERS,
-  PORTFOLIO_ITEMS,
+  PORTFOLIO_SPANS,
+  portfolioView,
   type PortfolioFilter,
 } from "../../data/portfolio";
 import { SITE } from "../../data/site";
@@ -9,13 +10,22 @@ import { useI18n } from "../../i18n";
 import { Reveal } from "../Reveal";
 import { InstagramIcon } from "../icons";
 
+/** warna latar sementara (sebelum foto termuat), bergilir per posisi tile */
+const TILE_GRADIENTS = [
+  "from-lk-indigo via-lk-sky to-lk-sky",
+  "from-lk-red to-lk-orange",
+  "from-lk-yellow to-lk-green",
+  "from-lk-green to-lk-sky",
+  "from-lk-orange to-lk-red",
+  "from-lk-sky to-lk-indigo",
+  "from-lk-green to-lk-yellow",
+  "from-lk-indigo to-lk-red",
+];
+
 export function Portofolio() {
   const { t } = useI18n();
   const [filter, setFilter] = useState<PortfolioFilter>("all");
-  const items =
-    filter === "all"
-      ? PORTFOLIO_ITEMS
-      : PORTFOLIO_ITEMS.filter((item) => item.cat === filter);
+  const items = portfolioView(filter);
 
   return (
     <section id="portofolio" className="py-20 lg:py-28">
@@ -55,17 +65,17 @@ export function Portofolio() {
         </Reveal>
 
         <div className="mt-10 grid auto-rows-[180px] grid-flow-dense grid-cols-2 gap-4 sm:auto-rows-[220px] md:grid-cols-4">
-          {items.map((item) => {
+          {items.map((item, i) => {
             const text = t.portofolio.items[item.id];
             return (
               <figure
                 key={item.id}
-                className={`portfolio-item ph group bg-gradient-to-br ${item.gradient} ${item.span}`}
+                className={`portfolio-item ph group bg-gradient-to-br ${TILE_GRADIENTS[i % TILE_GRADIENTS.length]} ${PORTFOLIO_SPANS[i] ?? ""}`}
               >
                 <img
                   src={item.image}
                   alt={text?.alt ?? item.id}
-                  className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  className={`absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105 ${item.focus ?? ""}`}
                   loading="lazy"
                 />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/50 to-transparent" />
