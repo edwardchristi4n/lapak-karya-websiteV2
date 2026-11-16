@@ -5,21 +5,27 @@ export interface Partner {
   tone: PartnerTone;
   /** Inisial yang tampil di panel kartu bila belum ada foto kegiatan. */
   monogram: string;
-  /** Foto kegiatan bersama mitra (opsional). */
+  /** Foto kegiatan bersama mitra, atau kartu logo "Lapak Karya × mitra" (opsional). */
   image?: string;
 }
 
-/** Urutan = urutan tampil di carousel. Teks tiap mitra ada di i18n (mitra.partners). */
+/**
+ * Urutan = urutan tampil di carousel: mitra dengan foto kegiatan bersama
+ * Lapak Karya lebih dulu, lalu kartu logo "Lapak Karya × mitra".
+ * Teks tiap mitra ada di i18n (mitra.partners).
+ */
 export const PARTNERS: Partner[] = [
-  { id: "rkb", tone: "red", monogram: "RKB", image: "/img/mitra-rumah-kreatif.jpg" },
-  { id: "dinkop", tone: "orange", monogram: "DK" },
-  { id: "plut", tone: "yellow", monogram: "PLUT" },
-  { id: "sibakul", tone: "green", monogram: "SB" },
-  { id: "ibisma", tone: "sky", monogram: "IBISMA" },
-  { id: "kemenkop", tone: "indigo", monogram: "KUKM" },
-  { id: "kemendag", tone: "red", monogram: "KEMENDAG" },
-  { id: "ppei", tone: "orange", monogram: "PPEI" },
-  { id: "bi", tone: "yellow", monogram: "BI" },
-  { id: "iccn", tone: "green", monogram: "ICCN" },
-  { id: "tda", tone: "sky", monogram: "TDA" },
+  // foto kegiatan bersama
+  { id: "bi", tone: "yellow", monogram: "BI", image: "/img/mitra-bi.webp" },
+  { id: "kemenkop", tone: "indigo", monogram: "KUKM", image: "/img/mitra-kemenkop.webp" },
+  { id: "kemendag", tone: "red", monogram: "KEMENDAG", image: "/img/mitra-kemendag.webp" },
+  // kartu logo
+  { id: "rkb", tone: "orange", monogram: "RKB", image: "/img/mitra-rkb.webp" },
+  { id: "dinkop", tone: "green", monogram: "DK", image: "/img/mitra-dinkop.webp" },
+  { id: "plut", tone: "sky", monogram: "PLUT", image: "/img/mitra-plut.webp" },
+  { id: "sibakul", tone: "yellow", monogram: "SB", image: "/img/mitra-sibakul.webp" },
+  { id: "ibisma", tone: "indigo", monogram: "IBISMA", image: "/img/mitra-ibisma.webp" },
+  { id: "ppei", tone: "red", monogram: "PPEI", image: "/img/mitra-ppei.webp" },
+  { id: "iccn", tone: "orange", monogram: "ICCN", image: "/img/mitra-iccn.webp" },
+  { id: "tda", tone: "green", monogram: "TDA", image: "/img/mitra-tda.webp" },
 ];

@@ -7,7 +7,7 @@ const dict = {
   meta: {
     title: "Lapak Karya | Custom Packaging Premium Jogja",
     description:
-      "Lapak Karya, pusat packaging custom premium di Yogyakarta. Hardbox, box magnet, paper bag, dan kemasan seni. Tanpa minimal order, gratis desain, kirim ke seluruh Indonesia.",
+      "Lapak Karya, pusat packaging custom premium di Yogyakarta. Hardbox, box magnet, paper bag, dan kemasan seni. Tanpa minimal order, tersedia jasa desain, kirim ke seluruh Indonesia.",
     ogLocale: "id_ID",
   },
   lang: {
@@ -33,7 +33,7 @@ const dict = {
     badge: "Pusat Packaging Custom · Yogyakarta",
     titleLines: ["Kemasan custom", "yang **bercerita**", "untuk brand-mu."],
     intro:
-      "Lapak Karya membuat hardbox, box magnet, paper bag, dan kemasan seni secara **custom & handmade**, rapi sampai ke detail terkecil. **Tanpa minimal order**, gratis desain, dikirim ke seluruh Indonesia.",
+      "Lapak Karya membuat hardbox, box magnet, paper bag, dan kemasan seni secara **custom & handmade**, rapi sampai ke detail terkecil. **Tanpa minimal order**, bisa dibantu desain, dikirim ke seluruh Indonesia.",
     ctaWa: "Konsultasi via WhatsApp",
     ctaPortofolio: "Lihat Portofolio",
     stats: {
@@ -76,7 +76,7 @@ const dict = {
     p1: "Lapak Karya adalah usaha **custom packaging premium (hardbox)** di Yogyakarta yang dirintis sejak **2020** oleh pasangan suami-istri berlatar belakang **desain** dan **kerajinan**. Berawal dari hobi membuat karya sekaligus kemasannya, pesanan pertama datang dari UMKM di Rumah Kreatif BUMN (RKB) Jogja.",
     p2: "Berbeda dari softbox cetak massal, kami fokus pada **hardbox custom yang rapi, kokoh, dan detail** untuk brand yang tidak butuh ribuan pcs, tapi ingin tampil beda.",
     workshopAlt: "Rumah produksi Lapak Karya di Jl. Minggiran, Yogyakarta",
-    founderAlt: "Founder Lapak Karya",
+    founderAlt: "Tim Lapak Karya",
     tuguAlt: "Tugu Yogyakarta",
     tuguCaption: "Dibuat di rumah produksi kami sendiri di Jogja.",
     visiTitle: "Visi",
@@ -201,7 +201,7 @@ const dict = {
       { label: "Akta PT", desc: "Berbadan hukum perseroan terbatas" },
       { label: "NIB", desc: "Nomor Induk Berusaha" },
       { label: "IUMK", desc: "Izin Usaha Mikro Kecil" },
-      { label: "HKI Merek", desc: "Merek Lapak Karya terdaftar" },
+      { label: "HKI Merek", desc: "Hak Kekayaan Intelektual Merek Lapak Karya terdaftar" },
     ],
   },
   perbandingan: {
@@ -312,8 +312,8 @@ const dict = {
         desc: "Order berapa pun bisa. Cocok untuk brand baru, uji pasar, atau edisi terbatas.",
       },
       {
-        title: "Free desain",
-        desc: "Belum punya desain? Kami bantu gratis, mulai dari template, mockup 2D/3D, hingga rendering.",
+        title: "Jasa desain",
+        desc: "Belum punya desain? Kami bantu mulai dari template, mockup 2D/3D, hingga rendering. Jasa desain bisa didiskusikan terlebih dahulu.",
       },
       {
         title: "Model & desain variatif",
@@ -449,10 +449,6 @@ const dict = {
         a: "Hardbox dibuat dari karton tebal yang dilapisi kertas, kaku dan kokoh, serta memberi kesan **premium**. Softbox dari karton tipis yang dicetak lalu dilipat, lebih ekonomis untuk produksi massal. Lapak Karya berfokus pada **hardbox custom**.",
       },
       {
-        q: "Apakah menerima kemasan makanan?",
-        a: "Bisa. Selain fashion, hijab, perhiasan, kosmetik, parfum, dan kerajinan, kami juga membuat **packaging untuk produk kuliner**.",
-      },
-      {
         q: "Bagaimana sistem pembayarannya?",
         a: "Karena semua pesanan dibuat custom, produksi dimulai setelah pembayaran DP. Pelunasan dilakukan sebelum barang dikirim atau diambil.",
       },
@@ -462,11 +458,11 @@ const dict = {
       },
       {
         q: "Apakah Lapak Karya sudah berbadan hukum?",
-        a: "Sudah. Lapak Karya memiliki **Akta PT, NIB, IUMK**, dan merek yang terdaftar di **HKI**.",
+        a: "Sudah. Lapak Karya memiliki **Akta PT, NIB, IUMK**, dan merek yang terdaftar di **HKI (Hak Kekayaan Intelektual) Merek**.",
       },
       {
         q: "Saya belum punya desain, bisa dibantu?",
-        a: "Tentu, **gratis**. Kami bantu dari template (model, ukuran, bahan, warna), mockup visual 2D/3D, hingga rendering sebelum produksi.",
+        a: "Tentu bisa. Kami bantu dari template (model, ukuran, bahan, warna), mockup visual 2D/3D, hingga rendering sebelum produksi. Mengenai jasa desain ini, **bisa didiskusikan terlebih dahulu** bersama tim kami.",
       },
     ],
   },
@@ -506,6 +502,17 @@ const dict = {
     default: "Halo Lapak Karya, saya dari website dan ingin konsultasi kemasan custom.",
     kontak: "Halo Lapak Karya, saya dari website dan ingin konsultasi kemasan custom.",
     katalog: "Halo Lapak Karya, saya dari website dan ingin melihat katalog produk.",
+    produk: "Halo Lapak Karya, saya dari website dan tertarik dengan produk:",
+  },
+  lightbox: {
+    dialog: "Pratinjau foto produk",
+    view: "Lihat foto",
+    hint: "Lihat detail",
+    close: "Tutup",
+    prev: "Foto sebelumnya",
+    next: "Foto berikutnya",
+    ask: "Tanya produk ini",
+    thumbs: "Pilih foto",
   },
   unboxing: {
     showcaseAlt: "Showcase kemasan premium Lapak Karya",

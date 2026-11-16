@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import {
   PORTFOLIO_FILTERS,
   PORTFOLIO_SPANS,
@@ -7,8 +7,10 @@ import {
 } from "../../data/portfolio";
 import { SITE } from "../../data/site";
 import { useI18n } from "../../i18n";
+import { useLightbox } from "../../hooks/useLightbox";
+import { Lightbox, type LightboxItem } from "../Lightbox";
 import { Reveal } from "../Reveal";
-import { InstagramIcon } from "../icons";
+import { ExpandIcon, InstagramIcon } from "../icons";
 
 /** warna latar sementara (sebelum foto termuat), bergilir per posisi tile */
 const TILE_GRADIENTS = [
@@ -26,6 +28,23 @@ export function Portofolio() {
   const { t } = useI18n();
   const [filter, setFilter] = useState<PortfolioFilter>("all");
   const items = portfolioView(filter);
+  const lightbox = useLightbox();
+
+  const lightboxItems = useMemo<LightboxItem[]>(
+    () =>
+      items.map((item) => {
+        const text = t.portofolio.items[item.id];
+        return {
+          id: item.id,
+          src: item.image,
+          alt: text?.alt ?? item.id,
+          title: text?.label ?? item.id,
+          badge: t.portofolio.filters[item.cat],
+          badgeClass: "bg-ink/5 text-ink-soft",
+        };
+      }),
+    [items, t],
+  );
 
   return (
     <section id="portofolio" className="py-20 lg:py-28">
@@ -70,22 +89,42 @@ export function Portofolio() {
             return (
               <figure
                 key={item.id}
-                className={`portfolio-item ph group bg-gradient-to-br ${TILE_GRADIENTS[i % TILE_GRADIENTS.length]} ${PORTFOLIO_SPANS[i] ?? ""}`}
+                ref={lightbox.originRef(i)}
+                className={`portfolio-item ph product-media zoom-tile bg-gradient-to-br ${TILE_GRADIENTS[i % TILE_GRADIENTS.length]} ${PORTFOLIO_SPANS[i] ?? ""}`}
               >
                 <img
                   src={item.image}
                   alt={text?.alt ?? item.id}
-                  className={`absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105 ${item.focus ?? ""}`}
+                  className={`product-img absolute inset-0 h-full w-full object-cover ${item.focus ?? ""}`}
                   loading="lazy"
                 />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/50 to-transparent" />
                 <figcaption className="ph-label relative">
                   {text?.label ?? item.id}
                 </figcaption>
+                <span
+                  aria-hidden="true"
+                  className="product-hint absolute top-3 right-3 grid h-9 w-9 place-items-center rounded-full bg-white/90 text-ink shadow-card backdrop-blur"
+                >
+                  <ExpandIcon className="h-4 w-4" />
+                </span>
+                <button
+                  type="button"
+                  onClick={() => lightbox.open(i)}
+                  aria-label={`${t.lightbox.view}: ${text?.label ?? item.id}`}
+                  className="absolute inset-0 z-10 cursor-zoom-in rounded-3xl focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white"
+                />
               </figure>
             );
           })}
         </div>
+
+        <Lightbox
+          items={lightboxItems}
+          index={lightbox.index}
+          onIndexChange={lightbox.setIndex}
+          getOrigin={lightbox.getOrigin}
+        />
 
         <Reveal className="mt-10 text-center">
           <a

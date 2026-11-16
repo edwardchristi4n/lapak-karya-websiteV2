@@ -1,7 +1,11 @@
-import { Suspense, lazy, type CSSProperties } from "react";
+import { Suspense, lazy, useMemo, type CSSProperties } from "react";
 import { RichText, useI18n } from "../../i18n";
 import { Reveal } from "../Reveal";
-import { DocumentIcon, WhatsAppIcon } from "../icons";
+import { DocumentIcon, ExpandIcon, WhatsAppIcon } from "../icons";
+import { useLightbox } from "../../hooks/useLightbox";
+import { Lightbox } from "../Lightbox";
+import { heroGalleryItems } from "../heroGallery";
+import { SHOWCASE_FALLBACK } from "../unboxing/unboxingConfig";
 import { UnboxingLoader } from "../unboxing/UnboxingLoader";
 
 const UnboxingExperience = lazy(() =>
@@ -107,17 +111,40 @@ export function Hero() {
 function FallbackGallery() {
   const { t } = useI18n();
   const g = t.hero.gallery;
+  const lightbox = useLightbox();
+  const items = useMemo(() => heroGalleryItems(t, SHOWCASE_FALLBACK), [t]);
+  /** ikon petunjuk + tombol transparan selebar area foto */
+  const zoomControls = (i: number) => (
+    <>
+      <span
+        aria-hidden="true"
+        className="product-hint absolute top-2 right-2 z-[1] grid h-8 w-8 place-items-center rounded-full bg-white/90 text-ink shadow-card"
+      >
+        <ExpandIcon className="h-3.5 w-3.5" />
+      </span>
+      <button
+        type="button"
+        onClick={() => lightbox.open(i)}
+        aria-label={`${t.lightbox.view}: ${items[i].title}`}
+        className="absolute inset-0 z-10 cursor-zoom-in focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white"
+      />
+    </>
+  );
   return (
     <>
       <div className="sm:hidden">
         <div className="relative">
-          <div className="ph aspect-[4/3] bg-gradient-to-br from-lk-sky via-lk-indigo to-lk-indigo shadow-lift">
+          <div
+            ref={lightbox.originRef(0)}
+            className="ph product-media zoom-tile aspect-[4/3] bg-gradient-to-br from-lk-sky via-lk-indigo to-lk-indigo shadow-lift"
+          >
             <img
               src="/assets/exosome.jpg"
               alt={g.mainAlt}
-              className="absolute inset-0 h-full w-full object-cover"
+              className="product-img absolute inset-0 h-full w-full object-cover"
               loading="eager"
             />
+            {zoomControls(0)}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/50 to-transparent" />
             <span className="ph-label relative">{g.mainLabel}</span>
           </div>
@@ -136,25 +163,33 @@ function FallbackGallery() {
         </div>
         <div className="mt-4 grid grid-cols-2 gap-3">
           <div className="rounded-2xl bg-white p-2.5 shadow-card">
-            <div className="ph aspect-[4/3] rounded-xl bg-gradient-to-br from-lk-orange to-lk-red">
+            <div
+              ref={lightbox.originRef(1)}
+              className="ph product-media zoom-tile aspect-[4/3] rounded-xl bg-gradient-to-br from-lk-orange to-lk-red"
+            >
               <img
                 src="/assets/samva_kriya.jpg"
                 alt={g.magnetAlt}
-                className="absolute inset-0 h-full w-full object-cover"
+                className="product-img absolute inset-0 h-full w-full object-cover"
                 loading="lazy"
               />
+              {zoomControls(1)}
             </div>
             <p className="mt-2 text-xs font-semibold">{g.magnetLabel}</p>
             <p className="text-[11px] text-ink-mute">{g.magnetSub}</p>
           </div>
           <div className="rounded-2xl bg-white p-2.5 shadow-card">
-            <div className="ph aspect-[4/3] rounded-xl bg-gradient-to-br from-lk-yellow to-lk-green">
+            <div
+              ref={lightbox.originRef(2)}
+              className="ph product-media zoom-tile aspect-[4/3] rounded-xl bg-gradient-to-br from-lk-yellow to-lk-green"
+            >
               <img
                 src="/assets/karya_wastra.jpg"
                 alt={g.bagAlt}
-                className="absolute inset-0 h-full w-full object-cover"
+                className="product-img absolute inset-0 h-full w-full object-cover"
                 loading="lazy"
               />
+              {zoomControls(2)}
             </div>
             <p className="mt-2 text-xs font-semibold">{g.bagLabel}</p>
             <p className="text-[11px] text-ink-mute">{g.bagSub}</p>
@@ -163,13 +198,17 @@ function FallbackGallery() {
       </div>
 
       <div className="relative mx-auto hidden aspect-square max-w-[560px] sm:block">
-        <div className="ph absolute inset-[8%] bg-gradient-to-br from-lk-sky via-lk-indigo to-lk-indigo shadow-lift">
+        <div
+          ref={lightbox.originRef(0)}
+          className="ph product-media zoom-tile absolute inset-[8%] bg-gradient-to-br from-lk-sky via-lk-indigo to-lk-indigo shadow-lift"
+        >
           <img
             src="/assets/exosome.jpg"
             alt={g.mainAlt}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="product-img absolute inset-0 h-full w-full object-cover"
             loading="eager"
           />
+          {zoomControls(0)}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/50 to-transparent" />
           <span className="ph-label relative">{g.mainLabel}</span>
         </div>
@@ -178,13 +217,17 @@ function FallbackGallery() {
           className="absolute -left-2 top-[14%] w-44 animate-floaty rounded-2xl bg-white p-3 shadow-lift sm:w-52"
           style={{ "--r": "-4deg" } as CSSProperties}
         >
-          <div className="ph aspect-[4/3] rounded-xl bg-gradient-to-br from-lk-orange to-lk-red">
+          <div
+            ref={lightbox.originRef(1)}
+            className="ph product-media zoom-tile aspect-[4/3] rounded-xl bg-gradient-to-br from-lk-orange to-lk-red"
+          >
             <img
               src="/assets/samva_kriya.jpg"
               alt={g.magnetAlt}
-              className="absolute inset-0 h-full w-full object-cover"
+              className="product-img absolute inset-0 h-full w-full object-cover"
               loading="lazy"
             />
+            {zoomControls(1)}
           </div>
           <p className="mt-2 text-xs font-semibold">{g.magnetSub}</p>
           <p className="text-[11px] text-ink-mute">{g.magnetDetail}</p>
@@ -199,13 +242,17 @@ function FallbackGallery() {
             } as CSSProperties
           }
         >
-          <div className="ph aspect-[4/3] rounded-xl bg-gradient-to-br from-lk-yellow to-lk-green">
+          <div
+            ref={lightbox.originRef(2)}
+            className="ph product-media zoom-tile aspect-[4/3] rounded-xl bg-gradient-to-br from-lk-yellow to-lk-green"
+          >
             <img
               src="/assets/karya_wastra.jpg"
               alt={g.bagAlt}
-              className="absolute inset-0 h-full w-full object-cover"
+              className="product-img absolute inset-0 h-full w-full object-cover"
               loading="lazy"
             />
+            {zoomControls(2)}
           </div>
           <p className="mt-2 text-xs font-semibold">{g.bagLabel}</p>
           <p className="text-[11px] text-ink-mute">{g.bagSub}</p>
@@ -224,6 +271,13 @@ function FallbackGallery() {
           </div>
         </div>
       </div>
+
+      <Lightbox
+        items={items}
+        index={lightbox.index}
+        onIndexChange={lightbox.setIndex}
+        getOrigin={lightbox.getOrigin}
+      />
     </>
   );
 }

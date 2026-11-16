@@ -4,7 +4,7 @@ const dict: Dict = {
   meta: {
     title: "Lapak Karya | Premium Custom Packaging from Jogja",
     description:
-      "Lapak Karya, a premium custom packaging studio in Yogyakarta. Hardboxes, magnetic boxes, paper bags, and art packaging. No minimum order, free design, shipped across Indonesia.",
+      "Lapak Karya, a premium custom packaging studio in Yogyakarta. Hardboxes, magnetic boxes, paper bags, and art packaging. No minimum order, design service available, shipped across Indonesia.",
     ogLocale: "en_US",
   },
   lang: {
@@ -30,7 +30,7 @@ const dict: Dict = {
     badge: "Custom Packaging Studio · Yogyakarta",
     titleLines: ["Custom packaging", "that **tells a story**", "for your brand."],
     intro:
-      "Lapak Karya crafts hardboxes, magnetic boxes, paper bags, and art packaging, fully **custom & handmade** and neat down to the smallest detail. **No minimum order**, free design, delivered across Indonesia.",
+      "Lapak Karya crafts hardboxes, magnetic boxes, paper bags, and art packaging, fully **custom & handmade** and neat down to the smallest detail. **No minimum order**, design help available, delivered across Indonesia.",
     ctaWa: "Consult via WhatsApp",
     ctaPortofolio: "View Portfolio",
     stats: {
@@ -73,7 +73,7 @@ const dict: Dict = {
     p1: "Lapak Karya is a **premium custom packaging (hardbox)** studio in Yogyakarta, started in **2020** by a husband-and-wife team with backgrounds in **design** and **craft**. It grew out of a love of making things and their packaging, with a first order from SMEs at Rumah Kreatif BUMN (RKB) Jogja.",
     p2: "Unlike mass-printed softboxes, we focus on **custom hardboxes that are neat, sturdy, and detailed** for brands that don't need thousands of pieces but want to stand out.",
     workshopAlt: "Lapak Karya production house on Jl. Minggiran, Yogyakarta",
-    founderAlt: "Lapak Karya founder",
+    founderAlt: "The Lapak Karya team",
     tuguAlt: "Tugu Yogyakarta monument",
     tuguCaption: "Made in our own production home in Jogja.",
     visiTitle: "Vision",
@@ -198,7 +198,7 @@ const dict: Dict = {
       { label: "Akta PT", desc: "Registered limited liability company" },
       { label: "NIB", desc: "Business Identification Number" },
       { label: "IUMK", desc: "Micro & Small Business License" },
-      { label: "HKI Merek", desc: "Registered Lapak Karya trademark" },
+      { label: "HKI Merek", desc: "Registered Lapak Karya trademark (Intellectual Property Rights)" },
     ],
   },
   perbandingan: {
@@ -309,8 +309,8 @@ const dict: Dict = {
         desc: "Order any quantity. Perfect for new brands, market tests, or limited editions.",
       },
       {
-        title: "Free design",
-        desc: "No design yet? We'll help for free with templates, 2D/3D mockups, and rendering.",
+        title: "Design service",
+        desc: "No design yet? We can help with templates, 2D/3D mockups, and rendering. The design service can be discussed first.",
       },
       {
         title: "Varied models & designs",
@@ -446,10 +446,6 @@ const dict: Dict = {
         a: "A hardbox is made of thick board wrapped in paper: rigid, sturdy, and **premium** to the touch. A softbox is thin printed board folded into shape, more economical for mass production. Lapak Karya focuses on **custom hardboxes**.",
       },
       {
-        q: "Do you accept food packaging?",
-        a: "Yes. Besides fashion, hijab, jewelry, cosmetics, perfume, and crafts, we also make **packaging for culinary products**.",
-      },
-      {
         q: "How does payment work?",
         a: "Since every order is custom, production starts after a deposit. The balance is paid before the goods are shipped or picked up.",
       },
@@ -459,11 +455,11 @@ const dict: Dict = {
       },
       {
         q: "Is Lapak Karya a registered business?",
-        a: "Yes. Lapak Karya holds an **Akta PT, NIB, IUMK**, and a trademark registered with **HKI** (Indonesia's IP office).",
+        a: "Yes. Lapak Karya holds an **Akta PT, NIB, IUMK**, and a trademark registered under **HKI (Hak Kekayaan Intelektual, Intellectual Property Rights) Merek**.",
       },
       {
         q: "I don't have a design yet. Can you help?",
-        a: "Of course, **for free**. We help with templates (model, size, material, color), 2D/3D visual mockups, and rendering before production.",
+        a: "Of course. We help with templates (model, size, material, color), 2D/3D visual mockups, and rendering before production. The design service **can be discussed with our team first**.",
       },
     ],
   },
@@ -505,6 +501,17 @@ const dict: Dict = {
     kontak:
       "Hello Lapak Karya, I'm from your website and would like to consult about custom packaging.",
     katalog: "Hello Lapak Karya, I'm from your website and would like to see your product catalog.",
+    produk: "Hello Lapak Karya, I'm from your website and interested in this product:",
+  },
+  lightbox: {
+    dialog: "Product photo preview",
+    view: "View photo",
+    hint: "View details",
+    close: "Close",
+    prev: "Previous photo",
+    next: "Next photo",
+    ask: "Ask about this product",
+    thumbs: "Choose a photo",
   },
   unboxing: {
     showcaseAlt: "Lapak Karya premium packaging showcase",

@@ -46,7 +46,6 @@ export function Tentang() {
               />
             </div>
             <div className="ph aspect-square bg-gradient-to-br from-lk-red to-lk-orange">
-              {/* TODO: ganti dengan foto owner Lapak Karya (foto ini sementara) */}
               <img
                 src="/img/tentang-founder.webp"
                 alt={t.tentang.founderAlt}

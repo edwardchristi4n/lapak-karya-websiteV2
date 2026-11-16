@@ -352,3 +352,139 @@ section[id]:not(#beranda) {
     transition: none !important;
   }
 }
+
+/* ===== Kartu produk (Layanan & Produk) =====
+   Reveal ditaruh di wrapper terpisah: kalau .reveal dan efek hover ada di elemen
+   yang sama, transisi .reveal (hanya opacity/transform) menimpa transisi hover
+   sehingga kartu "loncat" dan bayangan muncul tiba-tiba. */
+.product-card {
+  transition:
+    translate 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease;
+}
+.product-media {
+  /* sudut membulat tetap rapi saat foto di dalamnya diskalakan (Safari) */
+  isolation: isolate;
+  transform: translateZ(0);
+}
+.product-img {
+  transform: scale(1.001);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  backface-visibility: hidden;
+}
+.product-hint {
+  opacity: 0;
+  translate: 0 8px;
+  transition:
+    opacity 0.35s ease,
+    translate 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* tile foto (Portofolio, Hero): tanpa angkat kartu, cukup zoom foto + ikon */
+@media (hover: hover) {
+  .zoom-tile:hover .product-img {
+    transform: scale(1.06);
+  }
+  .zoom-tile:hover .product-hint {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+.zoom-tile:has(:focus-visible) .product-hint {
+  opacity: 1;
+  translate: 0 0;
+}
+@media (hover: hover) {
+  .product-card:hover {
+    translate: 0 -6px;
+    box-shadow: 0 28px 56px -24px rgb(27 29 58 / 0.32);
+    border-color: rgb(27 29 58 / 0.16);
+  }
+  .product-card:hover .product-img {
+    transform: scale(1.06);
+  }
+  .product-card:hover .product-hint {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+/* kartu asal ditahan di posisi hover selama pratinjau foto terbuka (lihat Lightbox) */
+.product-card[data-lb-active] {
+  translate: 0 -6px;
+  box-shadow: 0 28px 56px -24px rgb(27 29 58 / 0.32);
+  border-color: rgb(27 29 58 / 0.16);
+}
+.product-card[data-lb-active] .product-img,
+.zoom-tile[data-lb-active] .product-img {
+  transform: scale(1.06);
+}
+.product-card:has(:focus-visible) {
+  translate: 0 -6px;
+  box-shadow: 0 28px 56px -24px rgb(27 29 58 / 0.32);
+}
+.product-card:has(:focus-visible) .product-hint {
+  opacity: 1;
+  translate: 0 0;
+}
+/* layar sentuh: tanpa hover, tampilkan ikon kecil sebagai petunjuk bisa diketuk */
+@media (hover: none) {
+  .product-hint {
+    opacity: 1;
+    translate: 0 0;
+    padding: 0.5rem;
+  }
+  .product-hint-label {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .product-img,
+  .product-hint {
+    transition: none;
+  }
+  .product-card:hover .product-img,
+  .zoom-tile:hover .product-img {
+    transform: none;
+  }
+}
+
+/* ===== Lightbox (pratinjau foto) ===== */
+.lb-nav {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.92);
+  color: #1b1d3a;
+  box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.5);
+  transition:
+    background-color 0.2s ease,
+    scale 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.lb-nav:hover {
+  background: #fff;
+  scale: 1.08;
+}
+.lb-nav:active {
+  scale: 0.96;
+}
+.lb-thumb {
+  opacity: 0.55;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition:
+    opacity 0.25s ease,
+    outline-color 0.25s ease;
+}
+.lb-thumb:hover {
+  opacity: 0.9;
+}
+.lb-thumb.is-active {
+  opacity: 1;
+  outline-color: #1b1d3a;
+}
