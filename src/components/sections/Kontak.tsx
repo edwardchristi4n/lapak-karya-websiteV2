@@ -4,6 +4,7 @@ import { waLink } from "../../lib/wa";
 import { Reveal } from "../Reveal";
 import {
   InstagramIcon,
+  MailIcon,
   MapsLogoIcon,
   MapPinIcon,
   WhatsAppIcon,
@@ -77,6 +78,22 @@ export function Kontak() {
                       className="mt-1 block text-sm hover:text-lk-yellow"
                     >
                       {SITE.instagramHandle}
+                    </a>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white/10 text-lk-sky">
+                    <MailIcon className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold tracking-wider uppercase text-white/50">
+                      {t.kontak.emailLabel}
+                    </p>
+                    <a
+                      href={`mailto:${SITE.email}`}
+                      className="mt-1 block text-sm break-all hover:text-lk-yellow"
+                    >
+                      {SITE.email}
                     </a>
                   </div>
                 </li>

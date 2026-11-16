@@ -61,7 +61,21 @@ export function Layanan() {
           <p className="max-w-sm text-ink-soft">{t.layanan.subtitle}</p>
         </Reveal>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal className="mt-8 flex flex-wrap items-center gap-2">
+          <span className="mr-1 text-sm font-semibold text-ink-soft">
+            {t.layanan.industriesTitle}:
+          </span>
+          {t.layanan.industries.map((name) => (
+            <span
+              key={name}
+              className="rounded-full border border-ink/10 bg-white px-3 py-1 text-xs font-semibold text-ink"
+            >
+              {name}
+            </span>
+          ))}
+        </Reveal>
+
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}

@@ -7,7 +7,9 @@ import { Kontak } from "./components/sections/Kontak";
 import { Layanan } from "./components/sections/Layanan";
 import { Marquee } from "./components/sections/Marquee";
 import { Mitra } from "./components/sections/Mitra";
+import { Perbandingan } from "./components/sections/Perbandingan";
 import { Portofolio } from "./components/sections/Portofolio";
+import { Prestasi } from "./components/sections/Prestasi";
 import { Proses } from "./components/sections/Proses";
 import { Tentang } from "./components/sections/Tentang";
 import { UntukSiapa } from "./components/sections/UntukSiapa";
@@ -22,7 +24,9 @@ export default function App() {
         <Marquee />
         <Tentang />
         <Mitra />
+        <Prestasi />
         <Layanan />
+        <Perbandingan />
         <Keunggulan />
         <Portofolio />
         <UntukSiapa />

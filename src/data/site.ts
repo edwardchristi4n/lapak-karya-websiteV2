@@ -1,7 +1,11 @@
 export const SITE = {
-  // TODO: ganti dengan nomor WhatsApp asli (waNumber tanpa "+" / spasi)
-  waNumber: "628xxxxxxxxxx",
-  waDisplay: "+62 8xx-xxxx-xxxx",
+  // sumber: deck resmi Lapak Karya 2026 (waNumber tanpa "+" / spasi)
+  waNumber: "6282241188578",
+  waDisplay: "+62 822-4118-8578",
+  email: "lapakkaryaofficial@gmail.com",
+  // TODO: isi dengan path e-book katalog, mis. "/katalog/lapak-karya.pdf"
+  // (simpan file di public/katalog/). Kosong = tampil "sedang disiapkan".
+  catalogUrl: "",
   instagram: "https://www.instagram.com/lapakkarya/",
   instagramHandle: "@lapakkarya",
   address:

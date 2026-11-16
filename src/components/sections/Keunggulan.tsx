@@ -4,23 +4,24 @@ import { useReveal } from "../../hooks/useReveal";
 import { Reveal } from "../Reveal";
 import {
   CheckCircleIcon,
-  HeartIcon,
+  ClockIcon,
   LinesIcon,
   PencilIcon,
   StarIcon,
-  TruckIcon,
+  TagIcon,
 } from "../icons";
 
 const FEATURE_STYLES: Array<{
   icon: ComponentType<SVGProps<SVGSVGElement>>;
   iconWrap: string;
 }> = [
+  // urutan mengikuti t.keunggulan.features
   { icon: LinesIcon, iconWrap: "bg-lk-red/15 text-lk-red" },
-  { icon: StarIcon, iconWrap: "bg-lk-orange/15 text-lk-orange" },
-  { icon: PencilIcon, iconWrap: "bg-lk-yellow/15 text-lk-yellow" },
-  { icon: CheckCircleIcon, iconWrap: "bg-lk-green/15 text-lk-green" },
-  { icon: TruckIcon, iconWrap: "bg-lk-sky/15 text-lk-sky" },
-  { icon: HeartIcon, iconWrap: "bg-lk-indigo/25 text-[#9b99e6]" },
+  { icon: PencilIcon, iconWrap: "bg-lk-orange/15 text-lk-orange" },
+  { icon: StarIcon, iconWrap: "bg-lk-yellow/15 text-lk-yellow" },
+  { icon: ClockIcon, iconWrap: "bg-lk-green/15 text-lk-green" },
+  { icon: CheckCircleIcon, iconWrap: "bg-lk-sky/15 text-lk-sky" },
+  { icon: TagIcon, iconWrap: "bg-lk-indigo/25 text-[#9b99e6]" },
 ];
 
 export function Keunggulan() {

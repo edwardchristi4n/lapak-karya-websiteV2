@@ -6,6 +6,7 @@ import { waLink } from "../../lib/wa";
 import {
   ArrowUpIcon,
   InstagramIcon,
+  MailIcon,
   MapsLogoIcon,
   WhatsAppIcon,
 } from "../icons";
@@ -152,6 +153,17 @@ export function Footer() {
                     className="transition hover:text-ink"
                   >
                     {SITE.instagramHandle}
+                  </a>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="shrink-0 text-lk-sky">
+                    <MailIcon className="h-5 w-5" />
+                  </span>
+                  <a
+                    href={`mailto:${SITE.email}`}
+                    className="break-all transition hover:text-ink"
+                  >
+                    {SITE.email}
                   </a>
                 </li>
               </ul>

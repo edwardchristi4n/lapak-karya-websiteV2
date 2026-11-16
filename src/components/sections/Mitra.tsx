@@ -1,46 +1,57 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { RichText, useI18n } from "../../i18n";
-import { PARTNERS, type Partner } from "../../data/partners";
+import { PARTNERS, type Partner, type PartnerTone } from "../../data/partners";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import { Reveal } from "../Reveal";
 import { ArrowLeftIcon, ArrowRightIcon } from "../icons";
 
 const AUTOPLAY_MS = 4000;
 
+const TONES: Record<PartnerTone, { bar: string; tint: string; text: string }> = {
+  red: { bar: "bg-lk-red", tint: "bg-lk-red/10", text: "text-lk-red" },
+  orange: { bar: "bg-lk-orange", tint: "bg-lk-orange/10", text: "text-lk-orange" },
+  yellow: { bar: "bg-lk-yellow", tint: "bg-lk-yellow/20", text: "text-[#9a7b0c]" },
+  green: { bar: "bg-lk-green", tint: "bg-lk-green/10", text: "text-[#4d7d17]" },
+  sky: { bar: "bg-lk-sky", tint: "bg-lk-sky/10", text: "text-lk-sky" },
+  indigo: { bar: "bg-lk-indigo", tint: "bg-lk-indigo/10", text: "text-lk-indigo" },
+};
+
 function PartnerCard({ partner }: { partner: Partner }) {
   const { t } = useI18n();
   const text = t.mitra.partners[partner.id];
   if (!text) return null;
+  const tone = TONES[partner.tone];
   return (
     <article className="partner-card group relative flex w-[82%] shrink-0 snap-start flex-col overflow-hidden rounded-4xl border border-ink/10 bg-white transition hover:-translate-y-1 hover:shadow-lift sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]">
-      <div className={`h-1.5 w-full ${partner.accent}`} />
-      <div className="relative m-3 aspect-[16/9] overflow-hidden rounded-3xl bg-cream">
-        <img
-          src={partner.image}
-          alt={text.name}
-          className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
+      <div className={`h-1.5 w-full ${tone.bar}`} />
+      <div
+        className={`relative m-3 grid aspect-[16/9] place-items-center overflow-hidden rounded-3xl ${tone.tint}`}
+      >
+        {partner.image ? (
+          <img
+            src={partner.image}
+            alt={text.name}
+            className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          <span
+            aria-hidden="true"
+            className={`font-display text-5xl font-extrabold tracking-tight ${tone.text}`}
+          >
+            {partner.monogram}
+          </span>
+        )}
       </div>
       <div className="flex flex-1 flex-col px-6 pt-2 pb-6">
         <span
-          className={`self-start rounded-full px-3 py-1 text-[11px] font-semibold text-ink-soft ${partner.tagClass}`}
+          className={`self-start rounded-full px-3 py-1 text-[11px] font-semibold text-ink-soft ${tone.tint}`}
         >
           {text.tag}
         </span>
-        <div className="mt-3 flex items-center gap-3">
-          <span className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl border border-ink/10 bg-white p-1.5 shadow-card">
-            <img
-              src={partner.logo}
-              alt={text.logoAlt}
-              className="h-full w-full object-contain"
-              loading="lazy"
-            />
-          </span>
-          <h3 className="font-display text-xl leading-snug font-bold">
-            {text.name}
-          </h3>
-        </div>
+        <h3 className="mt-3 font-display text-xl leading-snug font-bold">
+          {text.name}
+        </h3>
         <p className="mt-2 text-sm leading-relaxed text-ink-soft">
           {text.description}
         </p>

@@ -2,9 +2,9 @@ import type { Dict } from "./id";
 
 const dict: Dict = {
   meta: {
-    title: "Lapak Karya - Premium Custom Packaging from Jogja",
+    title: "Lapak Karya | Premium Custom Packaging from Jogja",
     description:
-      "Lapak Karya, a premium custom packaging studio in Yogyakarta. Hardboxes, magnetic boxes, paper bags, and art packaging. Order in small batches, crisp details, shipped across Indonesia.",
+      "Lapak Karya, a premium custom packaging studio in Yogyakarta. Hardboxes, magnetic boxes, paper bags, and art packaging. No minimum order, free design, shipped across Indonesia.",
     ogLocale: "en_US",
   },
   lang: {
@@ -30,7 +30,7 @@ const dict: Dict = {
     badge: "Custom Packaging Studio · Yogyakarta",
     titleLines: ["Custom packaging", "that **tells a story**", "for your brand."],
     intro:
-      "Lapak Karya crafts hardboxes, magnetic boxes, paper bags, and art packaging — fully **custom & handmade**, neat down to the smallest detail. Small orders welcome, delivered across Indonesia.",
+      "Lapak Karya crafts hardboxes, magnetic boxes, paper bags, and art packaging, fully **custom & handmade** and neat down to the smallest detail. **No minimum order**, free design, delivered across Indonesia.",
     ctaWa: "Consult via WhatsApp",
     ctaPortofolio: "View Portfolio",
     stats: {
@@ -43,7 +43,7 @@ const dict: Dict = {
     },
     gallery: {
       mainAlt: "Premium hardbox crafted by Lapak Karya",
-      mainLabel: "Widya Herbal - Premium hardbox",
+      mainLabel: "Widya Herbal · Premium hardbox",
       magnetAlt: "Magnetic box",
       magnetLabel: "Magnetic Box",
       magnetSub: "Samva Kriya",
@@ -51,7 +51,7 @@ const dict: Dict = {
       bagAlt: "Custom paper bag",
       bagLabel: "Custom Paper Bag",
       bagSub: "Karya Wastra",
-      lowBadgeTop: "Low",
+      lowBadgeTop: "No",
       lowBadgeText: "minimum",
       lowBadgeText2: "order",
     },
@@ -70,75 +70,189 @@ const dict: Dict = {
   tentang: {
     eyebrow: "About Lapak Karya",
     title: "From a college desk to a custom packaging house.",
-    p1: "Lapak Karya is a **premium custom packaging (hardbox)** studio in Yogyakarta. Starting from a first order for Rumah Kreatif BUMN (RKB) Jogja, we officially established in **2020**, backed by a background in **design** and **craftsmanship**.",
-    p2: "Unlike mass-printed softboxes, we focus on **custom hardboxes that are neat, sturdy, and detailed** - for brands that don't need thousands of pieces but want to stand out.",
+    p1: "Lapak Karya is a **premium custom packaging (hardbox)** studio in Yogyakarta, started in **2020** by a husband-and-wife team with backgrounds in **design** and **craft**. It grew out of a love of making things and their packaging, with a first order from SMEs at Rumah Kreatif BUMN (RKB) Jogja.",
+    p2: "Unlike mass-printed softboxes, we focus on **custom hardboxes that are neat, sturdy, and detailed** for brands that don't need thousands of pieces but want to stand out.",
     workshopAlt: "Lapak Karya workshop and production process",
     founderAlt: "Lapak Karya founder",
     tuguAlt: "Tugu Yogyakarta monument",
     tuguCaption: "Made in our own production home in Jogja.",
+    visiTitle: "Vision",
+    visi: "To provide every kind of packaging need, answering demands on a global scale.",
+    misiTitle: "Mission",
+    misi: [
+      "Create innovative, creative, and solution-driven packaging for business branding.",
+      "Create sustainable, eco-friendly packaging.",
+      "Create packaging rooted in the local wisdom of the Indonesian archipelago.",
+    ],
     values: [
       {
-        title: "Non-culinary specialist",
-        desc: "Fashion, cosmetics, accessories, souvenirs, through to works of art.",
+        title: "Green industry",
+        desc: "Leftover production materials are upcycled into new products, with a tidy 5S work culture.",
       },
       {
-        title: "A Karang Taruna endeavor",
-        desc: "Growing together with the Suryodiningratan community.",
+        title: "Close to the community",
+        desc: "The owners are active in the local Karang Taruna youth organization and won 1st place at Karang Taruna Preneur 2025.",
       },
       {
         title: "Inclusive empowerment",
-        desc: "Involving vulnerable groups in the production process.",
+        desc: "Involving foundations, youth, students, people with special needs, and local craftspeople.",
       },
     ],
   },
   mitra: {
-    eyebrow: "Our Clients & Partners",
+    eyebrow: "Partners & Network",
     title: "Trusted by brands, SMEs, and **institutions**.",
     subtitle:
-      "From local Jogja SMEs to customers on other islands - they keep coming back for the neatness and detail of our work.",
+      "What started with word-of-mouth referrals now ranks in Google's top 3 for custom packaging, trusted by Jogja SMEs and customers across the islands.",
     prev: "Previous partner",
     next: "Next partner",
     goTo: "Go to partner",
-    ctaHeadline: "Our regular customers reorder every production season.",
-    ctaSub: "Consistent quality brings brands back - from Jogja to Kalimantan.",
+    ctaHeadline: "Our regular customers reorder every 3 months.",
+    ctaSub: "One customer in Kalimantan keeps ordering even though shipping costs more than the packaging itself.",
     joinTitle: "Your brand here next?",
     joinCta: "Become our partner",
     partners: {
       rkb: {
-        tag: "SME Coaching",
+        tag: "First partner",
         name: "Rumah Kreatif BUMN Jogja",
         description:
-          "Bag packaging for coached SMEs - the collaboration that started Lapak Karya's journey.",
-        logoAlt: "Rumah Kreatif BUMN Jogja logo",
+          "Bag packaging for coached SMEs, the collaboration that started Lapak Karya's journey.",
       },
-      mitra2: {
-        tag: "Business category",
-        name: "Partner Name 2",
+      dinkop: {
+        tag: "Local government",
+        name: "Dinkop UKM Jogja",
         description:
-          "Brief description of the collaboration, e.g. the type of packaging made for this partner.",
-        logoAlt: "Partner Name 2 logo",
+          "The Cooperatives & SMEs Office, a coaching and business development partner.",
       },
-      mitra3: {
-        tag: "Business category",
-        name: "Partner Name 3",
+      plut: {
+        tag: "Business mentoring",
+        name: "PLUT Jogja",
         description:
-          "Brief description of the collaboration, e.g. the type of packaging made for this partner.",
-        logoAlt: "Partner Name 3 logo",
+          "Integrated Business Service Center that mentors Jogja SMEs to level up.",
       },
-      mitra4: {
-        tag: "Business category",
-        name: "Partner Name 4",
+      sibakul: {
+        tag: "SME ecosystem",
+        name: "Sibakul Jogja",
         description:
-          "Brief description of the collaboration, e.g. the type of packaging made for this partner.",
-        logoAlt: "Partner Name 4 logo",
+          "The SME development ecosystem of the Special Region of Yogyakarta.",
       },
-      mitra5: {
-        tag: "Business category",
-        name: "Partner Name 5",
+      ibisma: {
+        tag: "Business incubator",
+        name: "IBISMA",
         description:
-          "Brief description of the collaboration, e.g. the type of packaging made for this partner.",
-        logoAlt: "Partner Name 5 logo",
+          "The business incubator where Lapak Karya won 3rd place at Inbis IBISMA, Dinkop DIY 2022.",
       },
+      kemenkop: {
+        tag: "Central government",
+        name: "Kemenkop UKM",
+        description:
+          "Ministry of Cooperatives and SMEs. Lapak Karya reached the national top 10 of Entradef Development 2023.",
+      },
+      kemendag: {
+        tag: "Central government",
+        name: "Ministry of Trade RI",
+        description:
+          "The ministry helping Indonesian SME products reach wider markets.",
+      },
+      ppei: {
+        tag: "Export training",
+        name: "PPEI",
+        description:
+          "Indonesia Export Training Center, preparing SMEs to break into export markets.",
+      },
+      bi: {
+        tag: "SME development",
+        name: "Bank Indonesia",
+        description:
+          "Indonesia's central bank, an active supporter of local SME development.",
+      },
+      iccn: {
+        tag: "Creative community",
+        name: "ICCN",
+        description:
+          "Indonesia Creative Cities Network, a network of creative cities and regencies across Indonesia.",
+      },
+      tda: {
+        tag: "Business community",
+        name: "TDA Community",
+        description:
+          "Tangan Di Atas community, an entrepreneurs' network for learning and growing together.",
+      },
+    },
+  },
+  prestasi: {
+    eyebrow: "Awards & Legal Status",
+    title: "A registered business with a **proven track record**.",
+    subtitle:
+      "Winning awards consistently since 2022 and fully registered as a legal entity, so you're ordering from a business you can trust.",
+    awards: [
+      { title: "1st Place, Karang Taruna Preneur", org: "Social Program", year: "2025" },
+      { title: "Top Five, JCSF", org: "Jogja Creative Startup Fest", year: "2025" },
+      { title: "Top 10, Pekan Inovasial", org: "Karang Taruna DIY", year: "2024" },
+      { title: "National Top 10, Entradef Development", org: "Kemenkop Business Mentoring", year: "2023" },
+      { title: "3rd Place, Youth Entrepreneurship Center", org: "DIKPORA DIY", year: "2022" },
+      { title: "3rd Place, Inbis IBISMA", org: "Dinkop DIY", year: "2022" },
+    ],
+    legalTitle: "Legal status",
+    legal: [
+      { label: "Akta PT", desc: "Registered limited liability company" },
+      { label: "NIB", desc: "Business Identification Number" },
+      { label: "IUMK", desc: "Micro & Small Business License" },
+      { label: "HKI Merek", desc: "Registered Lapak Karya trademark" },
+    ],
+  },
+  perbandingan: {
+    eyebrow: "Hardbox vs Softbox",
+    title: "Hardbox or softbox? Know the difference.",
+    subtitle:
+      "Not sure how they differ? Here's a quick overview to help you choose the right packaging for your product.",
+    hardbox: {
+      name: "Hardbox",
+      badge: "Lapak Karya's specialty",
+      summary: "A premium rigid box, assembled by hand.",
+    },
+    softbox: {
+      name: "Softbox",
+      summary: "A mass-printed folding box, common on the market.",
+    },
+    rows: [
+      {
+        aspect: "Material",
+        hardbox: "Thick, rigid board wrapped in art/fancy paper",
+        softbox: "Paper sheet (thin card) that is soft and easy to fold",
+      },
+      {
+        aspect: "Strength",
+        hardbox: "Rigid and sturdy, protects the product",
+        softbox: "Light and flexible, dents more easily",
+      },
+      {
+        aspect: "Unboxing feel",
+        hardbox: "Premium and exclusive, often kept or reused",
+        softbox: "Standard, usually thrown away after opening",
+      },
+      {
+        aspect: "Customization",
+        hardbox: "Shape, inserts, materials, and finishing in fine detail",
+        softbox: "Limited to standard print and die-cut patterns",
+      },
+      {
+        aspect: "Order quantity",
+        hardbox: "Ideal for small to medium quantities",
+        softbox: "Economical when ordering thousands",
+      },
+      {
+        aspect: "Price per piece",
+        hardbox: "Matches the quality, and can still fit your budget",
+        softbox: "Cheap when mass-produced",
+      },
+    ],
+    catalog: {
+      title: "Lapak Karya product catalog",
+      desc: "Hardbox design examples and sizes in one PDF e-book that is easy to browse and share.",
+      cta: "Download Catalog (PDF)",
+      soon: "Catalog coming soon",
+      waCta: "Request the catalog via WhatsApp",
     },
   },
   layanan: {
@@ -146,11 +260,13 @@ const dict: Dict = {
     title: "One place for all your custom packaging.",
     subtitle:
       "Size, material, color, and finish can be fully tailored to your product and brand identity.",
+    industriesTitle: "Trusted for packaging in",
+    industries: ["Fashion", "Hijab", "Jewelry", "Cosmetics", "Perfume", "Crafts", "Culinary"],
     services: {
       hardbox: {
         title: "Premium Hardbox",
         description:
-          "Rigid boxes wrapped in art/fancy paper. Lift-off lid, drawer, or book style - perfect for exclusive products.",
+          "Rigid boxes wrapped in art/fancy paper. Lift-off lid, drawer (slot), ribbon mailer, or magnetic mailer. Perfect for exclusive products.",
         badge: "Best seller",
       },
       magnet: {
@@ -166,7 +282,7 @@ const dict: Dict = {
       seserahan: {
         title: "Gift & Hampers Box",
         description:
-          "Packaging for special moments - weddings, engagements, holidays, and corporate gifts.",
+          "Packaging for special moments like weddings, engagements, holidays, and corporate gifts.",
       },
       souvenir: {
         title: "Souvenir & Art Packaging",
@@ -176,7 +292,7 @@ const dict: Dict = {
       prototipe: {
         title: "Prototypes & Coursework",
         description:
-          "Need 1-10 pcs for a design assignment or market test? We'll make it happen, neatly.",
+          "Need packaging for a school or university assignment, or a market test? We'll make it happen, neatly.",
         badge: "Students",
       },
     },
@@ -186,31 +302,31 @@ const dict: Dict = {
     title1: "Made by hand.",
     title2: "**designed for your brand.**",
     subtitle:
-      "We are not a mass factory. We are a small, meticulous workshop - built for customers who care about details.",
+      "We are not a mass factory. We are a small, meticulous workshop, built for customers who care about details.",
     features: [
       {
-        title: "Small orders welcome",
-        desc: "No need to order thousands. Perfect for new brands, market tests, or limited editions.",
+        title: "No minimum order",
+        desc: "Order any quantity. Perfect for new brands, market tests, or limited editions.",
       },
       {
-        title: "Custom down to the details",
-        desc: 'Tricky "fussy" requests are our specialty - shape, dividers, materials, through to finishing.',
+        title: "Free design",
+        desc: "No design yet? We'll help for free with templates, 2D/3D mockups, and rendering.",
       },
       {
-        title: "Guided by a designer",
-        desc: "Founders with a design & craft background, ready to help from concept to mockup.",
+        title: "Varied models & designs",
+        desc: 'Lift-off lids, drawers, ribbon mailers, magnetic mailers, and even the "fussiest" requests.',
       },
       {
-        title: "Handmade, neat & precise",
-        desc: "Every box is assembled and checked by hand before it reaches you.",
+        title: "Fast response",
+        desc: "Quick replies and on-time production for those who value efficiency.",
       },
       {
-        title: "Ships across Indonesia",
-        desc: "Our customers stretch from Java to Kalimantan, delivered safely via cargo.",
+        title: "Guaranteed quality",
+        desc: "Assembled by hand and checked one by one so it arrives safe and neat.",
       },
       {
-        title: "Every order makes an impact",
-        desc: "Production involves vulnerable groups & the local Karang Taruna community.",
+        title: "Affordable pricing",
+        desc: "Tailored to the budget you have in mind, without compromising quality.",
       },
     ],
   },
@@ -227,13 +343,13 @@ const dict: Dict = {
       seni: "Souvenir & Art",
     },
     items: {
-      parfum: { label: "Hardbox - Local perfume brand", alt: "Hardbox - Local perfume brand" },
+      parfum: { label: "Local perfume brand hardbox", alt: "Local perfume brand hardbox" },
       hampers: { label: "Magnetic hampers box", alt: "Magnetic hampers box" },
       butik: { label: "Boutique paper bag", alt: "Boutique paper bag" },
       kerajinan: { label: "Craft packaging", alt: "Craft packaging" },
       laci: { label: "Drawer hardbox", alt: "Drawer hardbox" },
       seserahan: { label: "Magnetic gift box", alt: "Magnetic gift box" },
-      umkm: { label: "SME bags - Rumah Kreatif", alt: "SME bags - Rumah Kreatif" },
+      umkm: { label: "Rumah Kreatif SME bags", alt: "Rumah Kreatif SME bags" },
       lukisan: { label: "Mini painting packaging", alt: "Mini painting packaging" },
     },
   },
@@ -254,8 +370,8 @@ const dict: Dict = {
         desc: "Packaging design assignments, product prototypes, or exhibitions.",
       },
       {
-        title: "Events & gifting",
-        desc: "Wedding trays, wedding souvenirs, hampers, and corporate gifts.",
+        title: "Institutions & events",
+        desc: "Institutional needs, wedding trays, wedding souvenirs, hampers, and corporate gifts.",
       },
     ],
   },
@@ -295,15 +411,19 @@ const dict: Dict = {
     items: [
       {
         q: "What is the minimum order at Lapak Karya?",
-        a: "We accept small-quantity orders. The minimum depends on the packaging type and complexity - tell us your needs and we'll recommend the best option.",
+        a: "**There's no minimum order**, so order any quantity. Perfect for new brands, market tests, or if you're still unsure how many you need.",
       },
       {
         q: "How long does production take?",
         a: "Estimates are calculated after the final design is approved, depending on quantity and packaging detail. We'll share the production schedule with the quote.",
       },
       {
+        q: "What's the difference between a hardbox and a softbox?",
+        a: "A hardbox is made of thick board wrapped in paper: rigid, sturdy, and **premium** to the touch. A softbox is thin printed board folded into shape, more economical for mass production. Lapak Karya focuses on **custom hardboxes**.",
+      },
+      {
         q: "Do you accept food packaging?",
-        a: "We specialize in **non-culinary** packaging - fashion, cosmetics, accessories, souvenirs, artworks, hampers, and the like.",
+        a: "Yes. Besides fashion, hijab, jewelry, cosmetics, perfume, and crafts, we also make **packaging for culinary products**.",
       },
       {
         q: "How does payment work?",
@@ -314,8 +434,12 @@ const dict: Dict = {
         a: "Yes. We regularly ship to cities across Indonesia using courier and cargo services.",
       },
       {
-        q: "I don't have a design yet - can you help?",
-        a: "Of course. Our team has a design background and is ready to help from concept, material selection, through to the packaging mockup.",
+        q: "Is Lapak Karya a registered business?",
+        a: "Yes. Lapak Karya holds an **Akta PT, NIB, IUMK**, and a trademark registered with **HKI** (Indonesia's IP office).",
+      },
+      {
+        q: "I don't have a design yet. Can you help?",
+        a: "Of course, **for free**. We help with templates (model, size, material, color), 2D/3D visual mockups, and rendering before production.",
       },
     ],
   },
@@ -328,6 +452,7 @@ const dict: Dict = {
     workshopLabel: "Workshop",
     waLabel: "WhatsApp",
     igLabel: "Instagram",
+    emailLabel: "Email",
     ctaWa: "Chat on WhatsApp",
     ctaMaps: "Open in Google Maps",
     mapTitle: "Lapak Karya location",
@@ -335,7 +460,7 @@ const dict: Dict = {
   footer: {
     tagline: "Premium Custom Packaging",
     description:
-      "Premium custom packaging work from Yogyakarta. Non-culinary specialists, handmade with an empowerment spirit.",
+      "Premium custom packaging from Yogyakarta, handmade with an empowerment spirit. Lapak Karya, crafting with love.",
     navHeading: "Navigation",
     serviceHeading: "Services",
     contactHeading: "Contact",
@@ -355,6 +480,7 @@ const dict: Dict = {
       "Hello Lapak Karya, I'm from your website and would like to consult about custom packaging.",
     kontak:
       "Hello Lapak Karya, I'm from your website and would like to consult about custom packaging.",
+    katalog: "Hello Lapak Karya, I'm from your website and would like to see your product catalog.",
   },
   unboxing: {
     showcaseAlt: "Lapak Karya premium packaging showcase",

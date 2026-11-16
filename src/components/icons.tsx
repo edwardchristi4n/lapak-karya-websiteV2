@@ -136,30 +136,57 @@ export function CheckCircleIcon(props: IconProps) {
   );
 }
 
-export function TruckIcon(props: IconProps) {
-  return (
-    <StrokeIcon {...props}>
-      <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7" />
-      <circle cx="7" cy="18" r="2" />
-      <circle cx="17" cy="18" r="2" />
-    </StrokeIcon>
-  );
-}
-
-export function HeartIcon(props: IconProps) {
-  return (
-    <StrokeIcon {...props}>
-      <path d="M12 21s-7-4.4-9.3-9A5.2 5.2 0 0 1 12 6.6 5.2 5.2 0 0 1 21.3 12C19 16.6 12 21 12 21Z" />
-    </StrokeIcon>
-  );
-}
-
 export function BoxLidIcon(props: IconProps) {
   return (
     <StrokeIcon {...props}>
       <path d="M4 8l8-4 8 4-8 4-8-4Z" />
       <path d="M4 8v8l8 4 8-4V8" />
       <path d="M12 12v8" />
+    </StrokeIcon>
+  );
+}
+
+export function TrophyIcon(props: IconProps) {
+  return (
+    <StrokeIcon {...props}>
+      <path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z" />
+      <path d="M17 6h3v2a3 3 0 0 1-3 3M7 6H4v2a3 3 0 0 0 3 3" />
+    </StrokeIcon>
+  );
+}
+
+export function DownloadIcon(props: IconProps) {
+  return (
+    <StrokeIcon {...props}>
+      <path d="M12 3v12M7 10l5 5 5-5" />
+      <path d="M4 15v6h16v-6" />
+    </StrokeIcon>
+  );
+}
+
+export function ClockIcon(props: IconProps) {
+  return (
+    <StrokeIcon {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </StrokeIcon>
+  );
+}
+
+export function TagIcon(props: IconProps) {
+  return (
+    <StrokeIcon {...props}>
+      <path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9-9-9Z" />
+      <circle cx="7.5" cy="7.5" r="1.5" />
+    </StrokeIcon>
+  );
+}
+
+export function MailIcon(props: IconProps) {
+  return (
+    <StrokeIcon {...props}>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3 7 9 6 9-6" />
     </StrokeIcon>
   );
 }
