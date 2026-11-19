@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lapakkarya.id/sitemap.xml
+Sitemap: https://lapak-karya-website.vercel.app/sitemap.xml
