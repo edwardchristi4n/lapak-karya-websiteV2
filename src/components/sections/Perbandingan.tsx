@@ -2,9 +2,9 @@ import { SITE } from "../../data/site";
 import { useI18n } from "../../i18n";
 import { waLink } from "../../lib/wa";
 import { Reveal } from "../Reveal";
-import { DocumentIcon, DownloadIcon, WhatsAppIcon } from "../icons";
+import { ArrowRightIcon, DocumentIcon, WhatsAppIcon } from "../icons";
 
-/** Edukasi hardbox vs softbox + akses katalog produk (e-book PDF). */
+/** Edukasi hardbox vs softbox + akses katalog produk (e-book flipbook). */
 export function Perbandingan() {
   const { t } = useI18n();
   const p = t.perbandingan;
@@ -92,11 +92,11 @@ export function Perbandingan() {
                 <a
                   href={SITE.catalogUrl}
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   className="btn-ghost bg-white"
                 >
-                  <DownloadIcon className="h-4 w-4" />
                   {p.catalog.cta}
+                  <ArrowRightIcon className="h-4 w-4" />
                 </a>
               ) : (
                 <span className="rounded-full bg-cream-deep px-4 py-2 text-xs font-semibold text-ink-soft">

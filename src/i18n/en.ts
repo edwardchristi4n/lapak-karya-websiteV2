@@ -249,8 +249,8 @@ const dict: Dict = {
     ],
     catalog: {
       title: "Lapak Karya product catalog",
-      desc: "Hardbox design examples and sizes in one PDF e-book that is easy to browse and share.",
-      cta: "Download Catalog (PDF)",
+      desc: "Hardbox design examples and sizes in one digital e-book that is easy to browse and share.",
+      cta: "Open Catalog",
       soon: "Catalog coming soon",
       waCta: "Request the catalog via WhatsApp",
     },

@@ -155,15 +155,6 @@ export function TrophyIcon(props: IconProps) {
   );
 }
 
-export function DownloadIcon(props: IconProps) {
-  return (
-    <StrokeIcon {...props}>
-      <path d="M12 3v12M7 10l5 5 5-5" />
-      <path d="M4 15v6h16v-6" />
-    </StrokeIcon>
-  );
-}
-
 export function ClockIcon(props: IconProps) {
   return (
     <StrokeIcon {...props}>

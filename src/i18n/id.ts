@@ -252,8 +252,8 @@ const dict = {
     ],
     catalog: {
       title: "Katalog produk Lapak Karya",
-      desc: "Contoh desain dan ukuran hardbox dalam satu e-book PDF yang mudah dilihat dan dibagikan.",
-      cta: "Unduh Katalog (PDF)",
+      desc: "Contoh desain dan ukuran hardbox dalam satu e-book digital yang mudah dilihat dan dibagikan.",
+      cta: "Buka Katalog",
       soon: "Katalog sedang disiapkan",
       waCta: "Minta katalog via WhatsApp",
     },

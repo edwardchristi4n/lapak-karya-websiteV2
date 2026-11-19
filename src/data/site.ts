@@ -3,9 +3,8 @@ export const SITE = {
   waNumber: "6282241188578",
   waDisplay: "+62 822-4118-8578",
   email: "lapakkaryaofficial@gmail.com",
-  // TODO: isi dengan path e-book katalog, mis. "/katalog/lapak-karya.pdf"
-  // (simpan file di public/katalog/). Kosong = tampil "sedang disiapkan".
-  catalogUrl: "",
+  // e-book katalog (flipbook Heyzine). Kosong = tampil "sedang disiapkan".
+  catalogUrl: "https://heyzine.com/flip-book/e84505cfb6.html",
   instagram: "https://www.instagram.com/lapakkarya/",
   instagramHandle: "@lapakkarya",
   address:
